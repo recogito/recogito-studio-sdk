@@ -48,9 +48,16 @@ npm init -y
 
 Then, install TypeScript and the Recogito Studio SDK as runtime dependencies:
 
+__Important:__ the step below is only temporary, until we publish the package
+to npm! (After that, a simple `npm install typescript @recogito/studio-sdk` will do).
+
 ```sh
-npm install typescript recogito-studio-sdk
+npm install typescript
+npm link @recogito/studio-sdk
 ```
+
+> __Important:__ make sure you made the local package available first, by 
+> running `npm link` inside this repository folder!
 
 ### Step 2: Configure TypeScript
 
