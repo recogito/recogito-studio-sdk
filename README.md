@@ -196,12 +196,12 @@ export default defineConfig({
 
 Run `npm install`. Congratulations. This sets up the foundation for your plugin! Run `npm run dev` to start the test application.
 
-### Step 5: Create the UI Extension Component
+### Step 6: Create a UI Extension
 
-Next we’ll add a __React component__ to add a "Hello World" message to the annotation editor. Create a new file `HelloWorldExtension.tsx` inside the `src` directory:
+Next we’ll add a __React component__ that displays a "Hello World" message in the annotation editor. Create a new file `HelloWorldMessage.tsx` inside the `src` directory:
 
 ```tsx
-export const HelloWorldExtension = () => {
+export const HelloWorldMessage = () => {
   
   return (
     <div>Hello World</div>
@@ -210,23 +210,21 @@ export const HelloWorldExtension = () => {
 }
 ```
 
-`annotation:*:annotation-editor` extension point to display our "Hello World" message directly in the annotation
-editor popup.
+We'll configure our plugin so that it exports this React component for the `annotation:*:annotation-editor` extension point. This extension point is a slot at the bottom of the annotation editor.
 
-Next, define an `Extension` object to register this our extension component:
+Edit your `index.ts` file to register the component as a UI extension:
 
 ```ts
-// index.ts
 import type { AstroIntegration } from 'astro';
 import { Extension, registerExtensions } from '@recogito/studio-sdk';
 
-export const ReconciliationAutosuggestExtension: Extension = {
+export const HelloWorldEditorMessageExtension: Extension = {
 
-  name: 'hello-world-extension',
+  name: 'hello-world-message',
 
   module_name: 'recogito-hello-world-plugin',
 
-  component_name: 'HelloWorldExtension',
+  component_name: 'HelloWorldMessage',
 
   extension_point: 'annotation:*:annotation-editor'
 
@@ -236,6 +234,7 @@ const plugin = (): AstroIntegration  => ({
   name: 'hello-world-plugin',
   hooks: {
     'astro:config:setup': ({ config, logger }) => {
+      // This registers the UI extension in Recogito Studio
       registerExtensions(HelloWorldEditorMessageExtension, config, logger);
     }
   }
@@ -243,3 +242,7 @@ const plugin = (): AstroIntegration  => ({
 
 export default plugin;
 ```
+
+### Step 7: Test Your Extension
+
+
