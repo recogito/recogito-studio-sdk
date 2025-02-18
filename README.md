@@ -185,8 +185,12 @@ Next we’ll add a __React component__ to add a "Hello World" message to the ann
 
 ```tsx
 export const HelloWorldExtension = () => {
-  return <div>Hello World</div>;
-};
+  
+  return (
+    <div>Hello World</div>
+  );
+
+}
 ```
 
 `annotation:*:annotation-editor` extension point to display our "Hello World" message directly in the annotation
