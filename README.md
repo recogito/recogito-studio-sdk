@@ -125,6 +125,18 @@ const plugin = (): AstroIntegration  => ({
 export default plugin;
 ```
 
+Your plugin package must expose this default as the root module. Include the following in your `package.json`: 
+
+```jsonc
+{
+  // ...
+  "exports": {
+    // Main module entry point – the default Astro Integration export
+    ".": "./dist/index.js",
+  },
+}
+```
+
 ### Step 4: Install the Test Application Template
 
 At this point, you have a technically valid Recogito Plugin. It doesn't actually do anything yet. But it will correctly register itself with Recogito Studio when you start it.
