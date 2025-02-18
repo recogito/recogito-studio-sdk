@@ -243,6 +243,20 @@ const plugin = (): AstroIntegration  => ({
 export default plugin;
 ```
 
+Finally: your plugin's `package.json` must expose each UI extension as a sub-module. Add this to your `package.json`:
+
+```jsonc
+{
+  // ...
+  "exports": {
+    // Main module entry point – the default Astro Integration export
+    ".": "./dist/index.js",
+    // Module export for the HelloWorldMessage UI extension
+    "./HelloWorldMessage": "./dist/extensions/HelloWorldMessage.js"
+  },
+}
+```
+
 ### Step 7: Test Your Extension
 
 At this point, you have a–basic, but fully functional–Recogito Studio plugin. Before deploying to Recogito, let's test it in the SDK test application.
