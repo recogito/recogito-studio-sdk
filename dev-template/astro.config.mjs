@@ -4,8 +4,7 @@ import node from '@astrojs/node';
 
 export default defineConfig({
   integrations: [
-    react(),
-    ReconciliationService()
+    react()
   ],
   devToolbar: {
     enabled: false
