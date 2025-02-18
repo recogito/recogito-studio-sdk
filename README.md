@@ -205,8 +205,11 @@ export default defineConfig({
   })
 });
 ```
+Congratulations. This sets up the foundation for your plugin! 
 
-Run `npm install`. Congratulations. This sets up the foundation for your plugin! Run `npm run dev` to start the test application.
+- Run `npm install`.
+- Run `npm run build` to build your plugin.
+- Run `npm run dev` to start the test application.
 
 ### Step 6: Create a UI Extension
 
