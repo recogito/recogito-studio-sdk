@@ -2,7 +2,7 @@
 
 A software development kit for developing plugins to [Recogito Studio](https://recogitostudio.org/), an open source platform for collaborative annotation of TEI, IIIF and PDF documents.
 
-## 1. Introduction
+## Introduction
 
 The __Recogito Studio SDK__ is designed to facilitate plugin development for the __Recogito Studio Client application__ without the need to set up your own full-stack installation or forking the platform. It provides essential tools and abstractions to help you build useful extensions for the Recogito Studio ecosystem.
 
@@ -26,11 +26,11 @@ With the Recogito Studio SDK, plugins can, for example:
 
 __Important:__ Plugins are restricted to the client part of Recogito Studio. Specifically, this means __plugins can not change or add to the backend component ("Recogito Server")__. For example, it is not possible for plugins to change or add to the Supabase schema, or add additional DB or edge functions.
 
-## 2. Getting Started
+## Getting Started
 
-This section walks you through the development of a __Hello World__ plugin that adds a simple message to the annotation editor.
+The following steps walk you through the development of a __Hello World__ plugin that adds a simple message to the annotation editor.
 
-[TODO - screenshot]
+> You can find the full result of this tutorial in this repository: [recogito/plugin-hello-world](https://github.com/recogito/plugin-hello-world).
 
 ### Prerequisites
 
@@ -198,7 +198,7 @@ Run `npm install`. Congratulations. This sets up the foundation for your plugin!
 
 ### Step 6: Create a UI Extension
 
-Next we’ll add a __React component__ that displays a "Hello World" message in the annotation editor. Create a new file `HelloWorldMessage.tsx` inside the `src` directory:
+Next we'll add a __React component__ that displays a "Hello World" message in the annotation editor. Create a new file `HelloWorldMessage.tsx` inside the `src` directory:
 
 ```tsx
 export const HelloWorldMessage = () => {
@@ -244,5 +244,57 @@ export default plugin;
 ```
 
 ### Step 7: Test Your Extension
+
+At this point, you have a–basic, but fully functional–Recogito Studio plugin. Before deploying to Recogito, let's test it in the SDK test application.
+
+- Build your plugin package.
+
+```bash
+npm run build
+```
+
+- Add your plugin package to the test application as a dependency. (We can do this without publishing the package, by usinga  local file link.) Add the following to your `.dev/package.json`:
+
+```jsonc
+{
+  //...
+  "dependencies": {
+    //...
+    "@recogito/plugin-hello-world": "file:../"
+  }
+}
+```
+
+- Configure the test app to use the Astro Integration exposed by your package. Add the following to your `.dev/astro.config.mjs`:
+
+```js
+import { defineConfig } from 'astro/config';
+import react from '@astrojs/react';
+import node from '@astrojs/node';
+
+// This imports the plugin to the Astro config
+import HelloWorldPlugin from '@recogito/plugin-hello-world';
+
+export default defineConfig({
+  integrations: [
+    react(),
+    // Add the plugin here
+    HelloWorldPlugin()
+  ],
+  devToolbar: {
+    enabled: false
+  },
+  adapter: node({
+    mode: 'standalone'
+  })
+});
+```
+
+Almost done! Now run `npm install`, `npm run dev` and point your browser to <http://localhost:4321/>. You should see the plugin registered in the test page, and a preview of the 'Hello World' React component.
+
+![Recogito Studio plugin test page](screenshot.png)
+
+
+
 
 
