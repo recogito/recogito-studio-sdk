@@ -28,6 +28,7 @@ __Important:__ Plugins are restricted to the client part of Recogito Studio. Spe
 
 <details>
 <summary>Getting Started</summary>
+
 ## Getting Started
 
 The following steps walk you through the development of a __Hello World__ plugin that adds a simple message to the annotation editor.
