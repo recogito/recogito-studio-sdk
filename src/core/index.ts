@@ -1,5 +1,6 @@
 export * from './Document';
 export * from './Extension';
+export * from './Plugin';
 export * from './Policies';
 export * from './Profile';
 export * from './SupbaseAnnotation';
