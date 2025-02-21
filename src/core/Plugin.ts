@@ -10,7 +10,7 @@ export interface Plugin<T extends unknown = any> {
 
   homepage: string;
 
-  extensions: Extension[];
+  extensions?: Extension[];
 
   options?: T;
 

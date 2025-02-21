@@ -1,14 +1,14 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import url from 'node:url';
-import type { Extension, Plugin } from './core';
+import type { Plugin } from './core';
 
 const GENERATED_DIR = 'src/plugins/generated';
 
 export const registerPlugin = (plugin: Plugin, config: any, logger: any) => {
   logger.info(`Registering plugin: ${plugin.name}`);
   
-  const { extensions } = plugin;
+  const extensions = plugin.extensions || [];
   extensions.forEach(e => 
     logger.info(`  ${e.module_name}:${e.name}`));
   
