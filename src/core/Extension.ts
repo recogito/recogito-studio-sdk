@@ -9,4 +9,3 @@ export interface Extension {
   component_name: string;
 
 }
-
