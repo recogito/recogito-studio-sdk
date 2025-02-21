@@ -341,7 +341,9 @@ To install a plugin into your Recogito Studio instance you need to __publish__ t
 
 A Recogito Studio plugin is just an Astro Integration, therefore you can follow [Astro's standard installation procedure](https://docs.astro.build/en/guides/integrations-guide/). __Note:__ at the moment we only support [manual installation](https://docs.astro.build/en/guides/integrations-guide/).
 
-1. In your Recogito Studio Client folder, install the npm package: `npm install <plugin-package-to-install>`
+1. In your Recogito Studio Client folder, install the npm package: 
+   - From the npm registry: `npm install <plugin-package-to-install>`
+   - From Github: `npm install https://github.com/<org-name>/<plugin-project-name>`
 2. Add the plugin the `astro.config.mjs` file:
 
 ```diff
