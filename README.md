@@ -328,8 +328,33 @@ Almost done! Now run `npm install`, `npm run dev` and point your browser to <htt
 </details>
 
 <details>
-<summary>## Installing a Plugin</summary>
-Todo...
+<summary>Installing Plugins</summary>
+
+## Installing Plugins
+
+To install a plugin into your Recogito Studio instance you need to __publish__ them. You can either do this by:
+
+- Publishing the plugin as a [package on the npm registry](https://docs.npmjs.com/cli/v8/commands/npm-publish).
+- Making your project repository public on Github, enabling people to [install the package directly from there](https://www.geeksforgeeks.org/how-to-install-an-npm-package-directly-from-github/).
+
+### Installation
+
+A Recogito Studio plugin is just an Astro Integration, therefore you can follow [Astro's standard installation procedure](https://docs.astro.build/en/guides/integrations-guide/). __Note:__ at the moment we only support [manual installation](https://docs.astro.build/en/guides/integrations-guide/).
+
+1. In your Recogito Studio Client folder, install the npm package: `npm install <plugin-package-to-install>`
+2. Add the plugin the `astro.config.mjs` file:
+
+```diff
+import { defineConfig } from 'astro/config';
++ import PluginToInstall from 'plugin-package';
+
+export default defineConfig({
++  integrations: [
++    PluginToInstall()
++  ]
+});
+```
+Note that plugins may support additional config options at this step. Refer to the plugin's documentation for details.
 </details>
 
 
