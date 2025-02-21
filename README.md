@@ -26,7 +26,8 @@ With the Recogito Studio SDK, plugins can, for example:
 
 __Important:__ Plugins are restricted to the client part of Recogito Studio. Specifically, this means __plugins can not change or add to the backend component ("Recogito Server")__. For example, it is not possible for plugins to change or add to the Supabase schema, or add additional DB or edge functions.
 
-## Getting Started
+<details>
+<summary>## Getting Started</summary>
 
 The following steps walk you through the development of a __Hello World__ plugin that adds a simple message to the annotation editor.
 
@@ -322,6 +323,12 @@ export default defineConfig({
 Almost done! Now run `npm install`, `npm run dev` and point your browser to <http://localhost:4321/>. You should see the plugin registered in the test page, and a preview of the 'Hello World' React component.
 
 ![Recogito Studio plugin test page](screenshot.png)
+</details>
+
+<details>
+<summary>## Installing a Plugin</summary>
+Todo...
+</details>
 
 
 
