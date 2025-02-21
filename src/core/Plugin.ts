@@ -1,6 +1,6 @@
 import type { Extension } from './Extension';
 
-export interface Plugin<T extends unknown> {
+export interface Plugin<T extends unknown = any> {
 
   name: string;
 
