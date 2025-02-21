@@ -1,3 +1,3 @@
 export * from './sdk';
 export * from './core';
-export * from './registerExtensions';
+export * from './registerPlugin';
