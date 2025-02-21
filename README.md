@@ -111,16 +111,29 @@ Make sure the following lines are in your `package.json`:
 
 ### Step 3: Create the Plugin Entry Point
 
-Inside the `src` directory, create a file called `index.ts`. This file is your main plugin entry point that will get registered by Recogito Studio. It __must provide a default export__, which __must be an Astro Integration.__
+Inside the `src` directory, create a file called `index.ts`. This file is your main plugin entry point that will get registered by Recogito Studio. It __must provide a default export__, which must be an Astro Integration, and must regiter a single __Plugin__.
 
 ```ts
 import type { AstroIntegration } from 'astro';
+import { Plugin, registerPlugin } from '@recogito/studio-sdk';
+
+const HelloWorldPlugin: Plugin = {
+
+  name: 'My Hello World Plugin',
+
+  description: 'An example Hello World plugin.',
+
+  author: 'Performant Software',
+
+  homepage: 'https://www.performantsoftware.com/'
+
+};
 
 const plugin = (): AstroIntegration  => ({
   name: 'hello-world-plugin',
   hooks: {
     'astro:config:setup': ({ config, logger }) => {
-      // We will later register our extension here!
+      registerPlugin(HelloWorldPlugin, config, logger);
     }
   }
 });
@@ -232,28 +245,37 @@ We'll configure our plugin so that it exports this React component for the `anno
 
 Edit your `index.ts` file to register the component as a UI extension:
 
-```ts
+```diff
 import type { AstroIntegration } from 'astro';
-import { Extension, registerExtensions } from '@recogito/studio-sdk';
+import { Plugin, registerPlugin } from '@recogito/studio-sdk';
 
-export const HelloWorldEditorMessageExtension: Extension = {
+const HelloWorldPlugin: Plugin = {
 
-  name: 'hello-world-message',
+  name: 'My Hello World Plugin',
 
-  module_name: 'recogito-hello-world-plugin',
+  description: 'An example Hello World plugin.',
 
-  component_name: 'HelloWorldMessage',
+  author: 'Performant Software',
 
-  extension_point: 'annotation:*:annotation-editor'
+  homepage: 'https://www.performantsoftware.com/'
 
-}
++  extensions: [{
++    name: 'hello-world-message',
++
++    module_name: 'recogito-hello-world-plugin',
++
++    component_name: 'HelloWorldMessage',
++
++    extension_point: 'annotation:*:annotation-editor'
++  }]
+
+};
 
 const plugin = (): AstroIntegration  => ({
   name: 'hello-world-plugin',
   hooks: {
     'astro:config:setup': ({ config, logger }) => {
-      // This registers the UI extension in Recogito Studio
-      registerExtensions(HelloWorldEditorMessageExtension, config, logger);
+      registerPlugin(HelloWorldPlugin, config, logger);
     }
   }
 });
