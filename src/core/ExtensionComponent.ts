@@ -18,6 +18,12 @@ export interface AdminExtensionExtensionProps<T extends unknown = any> extends E
 
 }
 
+export interface DocumentCardActionsExtensionProps<T extends unknown = any> extends ExtensionComponentProps<T> {
+
+  documentId: string;
+
+}
+
 export interface TagAutosuggestExtensionProps<T extends unknown = any> extends ExtensionComponentProps<T> {
 
   autoFocus?: boolean;
