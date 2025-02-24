@@ -24,6 +24,8 @@ export interface DocumentCardActionsExtensionProps<T extends unknown = any> exte
 
   projectId: string;
 
+  contextId: string;
+
 }
 
 export interface TagAutosuggestExtensionProps<T extends unknown = any> extends ExtensionComponentProps<T> {
