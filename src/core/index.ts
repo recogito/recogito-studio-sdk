@@ -1,3 +1,4 @@
+export * from './utils';
 export * from './Document';
 export * from './Extension';
 export * from './ExtensionComponent';
