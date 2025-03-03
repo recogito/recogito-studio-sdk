@@ -182,7 +182,7 @@ This will copy the test application to a `.dev` folder in your project. We recom
 
 ### Step 5: Configure the Test Application
 
-Set up the test application to use your plugin. Open `.dev/package.json` and add your plugin as a file dependency.
+Set up the test application to use your plugin. Open `.dev/package.json` and add your plugin as a file dependency. __Important:__ make sure the package name that you use here matches the `name` you defined in your package's `package.json`! 
 
 ```jsonc
   "dependencies": {
