@@ -129,7 +129,7 @@ const HelloWorldPlugin: Plugin = {
 
 };
 
-const plugin = (): AstroIntegration  => ({
+const plugin = (): AstroIntegration => ({
   name: 'hello-world-plugin',
   hooks: {
     'astro:config:setup': ({ config, logger }) => {
