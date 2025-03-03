@@ -12,7 +12,7 @@ export interface ExtensionComponentProps<T extends unknown = any> {
 
 }
 
-export interface AdminExtensionExtensionProps<T extends unknown = any> extends ExtensionComponentProps<T> {
+export interface AdminExtensionProps<T extends unknown = any> extends ExtensionComponentProps<T> {
 
   onChangeUserSettings(settings: any): void;
 
