@@ -199,19 +199,17 @@ Set up the test application to use your plugin. Open `.dev/package.json` and add
 
 Edit the Astro configuration in `.dev/astro.config-mjs`.
 
-```js
+```diff
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import node from '@astrojs/node';
 
-// Add this
-import HelloWorldPlugin from 'hello-world-plugin';
++ import HelloWorldPlugin from 'hello-world-plugin';
 
 export default defineConfig({
   integrations: [
     react(),
-    // Add this
-    HelloWorldPlugin()
++     HelloWorldPlugin()
   ],
   devToolbar: {
     enabled: false
