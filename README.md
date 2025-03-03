@@ -193,7 +193,7 @@ Set up the test application to use your plugin. Open `.dev/package.json` and add
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     // Add this
-    "hello-world-plugin": "file:../package.json"
+    "hello-world-plugin": "file:../"
   }
 ```
 
