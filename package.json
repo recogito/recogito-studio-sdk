@@ -1,6 +1,6 @@
 {
   "name": "@recogito/studio-sdk",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "Plugin SDK for the Recogito Studio Client",
   "license": "MIT",
   "author": "Rainer Simon",
