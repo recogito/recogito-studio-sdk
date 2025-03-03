@@ -209,7 +209,7 @@ import node from '@astrojs/node';
 export default defineConfig({
   integrations: [
     react(),
-+     HelloWorldPlugin()
++   HelloWorldPlugin()
   ],
   devToolbar: {
     enabled: false
