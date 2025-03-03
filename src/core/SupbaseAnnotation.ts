@@ -2,6 +2,8 @@ import type { Annotation, AnnotationTarget, AnnotationBody } from '@annotorious/
 
 export interface SupabaseAnnotation extends Annotation {
 
+  id: string; // Not sure why, but the ID is being picked up from the base class!?
+
   target: SupabaseAnnotationTarget;
 
   bodies: SupabaseAnnotationBody[];
