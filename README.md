@@ -78,8 +78,8 @@ There is a GitHub template that you can use to quickly bootstrap your new projec
 Create a new directory for your plugin and initialize an npm project:
 
 ```sh
-mkdir hello-world-plugin
-cd hello-world-plugin
+mkdir plugin-hello-world
+cd plugin-hello-world
 npm init -y
 ```
 
@@ -156,7 +156,7 @@ const HelloWorldPlugin: Plugin = {
 };
 
 const plugin = (): AstroIntegration => ({
-  name: "hello-world-plugin",
+  name: "plugin-hello-world",
   hooks: {
     "astro:config:setup": ({ config, logger }) => {
       registerPlugin(HelloWorldPlugin, config, logger);
@@ -200,10 +200,10 @@ This will copy the test application to a `.dev` folder in your project. We recom
 {
   // ...
   "scripts": {
-    "dev": "npm start --prefix .dev/",
+    "dev": "npm start --prefix .dev/"
     //...
-  },
-
+  }
+}
 ```
 
 ### Step 5: Configure the Test Application
@@ -219,7 +219,7 @@ Set up the test application to use your plugin. Open `.dev/package.json` and add
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     // Add this
-    "hello-world-plugin": "file:../"
+    "plugin-hello-world": "file:../"
   }
 ```
 
@@ -230,7 +230,7 @@ import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import node from '@astrojs/node';
 
-+ import HelloWorldPlugin from 'hello-world-plugin';
++ import HelloWorldPlugin from 'plugin-hello-world';
 
 export default defineConfig({
   integrations: [
@@ -247,6 +247,12 @@ export default defineConfig({
 ```
 
 Congratulations. This sets up the foundation for your plugin!
+
+The build step requires [copyfiles](https://www.npmjs.com/package/copyfiles) if you do not have that installed run the following:
+
+```sh
+npm install -g copyfiles
+```
 
 - Run `npm install`.
 - Run `npm run build` to build your plugin.
@@ -283,7 +289,7 @@ const HelloWorldPlugin: Plugin = {
 +  extensions: [{
 +    name: 'hello-world-message',
 +
-+    module_name: 'recogito-hello-world-plugin',
++    module_name: 'plugin-hello-world',
 +
 +    component_name: 'HelloWorldMessage',
 +
@@ -293,7 +299,7 @@ const HelloWorldPlugin: Plugin = {
 };
 
 const plugin = (): AstroIntegration  => ({
-  name: 'hello-world-plugin',
+  name: 'plugin-hello-world',
   hooks: {
     'astro:config:setup': ({ config, logger }) => {
       registerPlugin(HelloWorldPlugin, config, logger);
