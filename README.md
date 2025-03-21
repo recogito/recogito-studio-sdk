@@ -141,7 +141,7 @@ Make sure the following lines are in your `package.json`:
 
 ### Step 3: Create the Plugin Entry Point
 
-Inside the `src` directory, create a file called `index.ts`. This file is your main plugin entry point that will get registered by Recogito Studio. It **must provide a default export**, which must be an Astro Integration, and must regiter a single **Plugin**.
+Create a subdirectory `src` in your project root. Inside the `src` directory, create a file called `index.ts`. This file is your main plugin entry point that will get registered by Recogito Studio. It **must provide a default export**, which must be an Astro Integration, and must regiter a single **Plugin**.
 
 ```ts
 import type { AstroIntegration } from "astro";
@@ -250,7 +250,7 @@ export default defineConfig({
 
 ### Step 6: Create a UI Extension
 
-Next we'll add a **React component** that displays a "Hello World" message in the annotation editor. Inside the `src` directory, create a subdirectory name `extensions` and create a new file `HelloWorldMessage.tsx`
+Next we'll add a **React component** that displays a "Hello World" message in the annotation editor. Inside the `src` directory or your project root, create a subdirectory name `extensions` and create a new file `HelloWorldMessage.tsx`
 
 ```tsx
 // /src/HelloWorldMessage.tsx
@@ -264,7 +264,7 @@ We'll configure our plugin so that it exports this React component for the `anno
 
 Edit your `index.ts` file to register the component as a UI extension:
 
-\*be sure that `module_name` matches the `name` in your `package.json` file. If the name includes an `@` (i.e. @recogito/plugin-hello-world), you would use `recogito-plugin-hello-world`.
+Be sure that `module_name` matches the `name` in your `package.json` file.
 
 ```diff
 import type { AstroIntegration } from 'astro';
