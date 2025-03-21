@@ -88,6 +88,7 @@ Install the following dev dependencies:
 ```sh
 npm install --save-dev @types/node @types/react @types/react-dom typescript
 npm install --save-dev astro react react-dom
+tsc --init -y
 ```
 
 Then, install the Recogito Studio SDK as runtime dependencies:
@@ -132,7 +133,8 @@ Make sure the following lines are in your `package.json`:
   "type": "module",
   "files": ["dist"],
   "scripts": {
-    "build": "tsc"
+    "build": "tsc && npm run copy-css",
+    "copy-css": "copyfiles -u 1 \"src/extensions/**/*.css\" dist"
   }
 }
 ```
@@ -219,11 +221,11 @@ Set up the test application to use your plugin. Open `.dev/package.json` and add
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     // Add this
-    "plugin-hello-world": "file:../"
+    "plugin-hello-world": "file:./"
   }
 ```
 
-Edit the Astro configuration in `.dev/astro.config-mjs`.
+Edit the Astro configuration in `.dev/astro.config-mjs`. Again using the correct name as stated [above](#step-5-configure-the-test-application)
 
 ```diff
 import { defineConfig } from 'astro/config';
@@ -246,23 +248,13 @@ export default defineConfig({
 });
 ```
 
-Congratulations. This sets up the foundation for your plugin!
-
-The build step requires [copyfiles](https://www.npmjs.com/package/copyfiles) if you do not have that installed run the following:
-
-```sh
-npm install -g copyfiles
-```
-
-- Run `npm install`.
-- Run `npm run build` to build your plugin.
-- Run `npm run dev` to start the test application.
-
 ### Step 6: Create a UI Extension
 
-Next we'll add a **React component** that displays a "Hello World" message in the annotation editor. Create a new file `HelloWorldMessage.tsx` inside the `src` directory:
+Next we'll add a **React component** that displays a "Hello World" message in the annotation editor. Inside the `src` directory, create a subdirectory name `extensions` and create a new file `HelloWorldMessage.tsx`
 
 ```tsx
+// /src/HelloWorldMessage.tsx
+
 export const HelloWorldMessage = () => {
   return <div>Hello World</div>;
 };
@@ -271,6 +263,8 @@ export const HelloWorldMessage = () => {
 We'll configure our plugin so that it exports this React component for the `annotation:*:annotation-editor` extension point. This extension point is a slot at the bottom of the annotation editor.
 
 Edit your `index.ts` file to register the component as a UI extension:
+
+\*be sure that `module_name` matches the `name` in your `package.json` file. If the name includes an `@` (i.e. @recogito/plugin-hello-world), you would use `recogito-plugin-hello-world`.
 
 ```diff
 import type { AstroIntegration } from 'astro';
@@ -324,6 +318,23 @@ Finally: your plugin's `package.json` must expose each UI extension as a sub-mod
 }
 ```
 
+Congratulations. This sets up the foundation for your plugin!
+
+The build step requires [copyfiles](https://www.npmjs.com/package/copyfiles) if you do not have that installed run the following:
+
+```sh
+npm install -g copyfiles
+```
+
+In your `.dev` directory:
+
+- Run `npm install`.
+
+In your project directory:
+
+- Run `npm run build` to build your plugin.
+- Run `npm run dev` to start the test application.
+
 </details>
 
 ## Test Your Extension
@@ -356,7 +367,7 @@ import react from "@astrojs/react";
 import node from "@astrojs/node";
 
 // This imports the plugin to the Astro config
-import HelloWorldPlugin from "@recogito/plugin-hello-world";
+import HelloWorldPlugin from "plugin-hello-world";
 
 export default defineConfig({
   integrations: [
