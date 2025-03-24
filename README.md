@@ -51,7 +51,7 @@ There is a GitHub template that you can use to quickly bootstrap your new projec
 
 ### Create New Project From Template
 
-1. In you browser, go to the [template repository](https://github.com/recogito/plugin-template)
+1. In your browser, go to the [template repository](https://github.com/recogito/plugin-template)
 2. Above the file list, click Use this template.
 3. Select Create a new repository.
 
@@ -88,7 +88,7 @@ Install the following dev dependencies:
 ```sh
 npm install --save-dev @types/node @types/react @types/react-dom typescript
 npm install --save-dev astro react react-dom
-tsc --init -y
+npx tsc --init
 ```
 
 Then, install the Recogito Studio SDK as runtime dependencies:
