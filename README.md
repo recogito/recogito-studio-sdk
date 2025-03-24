@@ -86,7 +86,7 @@ npm init -y
 Install the following dev dependencies:
 
 ```sh
-npm install --save-dev @types/node @types/react @types/react-dom typescript
+npm install --save-dev @types/node @types/react @types/react-dom typescript copyfiles
 npm install --save-dev astro react react-dom
 npx tsc --init
 ```
@@ -313,18 +313,12 @@ Finally: your plugin's `package.json` must expose each UI extension as a sub-mod
     // Main module entry point – the default Astro Integration export
     ".": "./dist/index.js",
     // Module export for the HelloWorldMessage UI extension
-    "./HelloWorldMessage": "./dist/extensions/HelloWorldMessage.js"
+    "./HelloWorldMessage": "./dist/HelloWorldMessage.js"
   }
 }
 ```
 
 Congratulations. This sets up the foundation for your plugin!
-
-The build step requires [copyfiles](https://www.npmjs.com/package/copyfiles) if you do not have that installed run the following:
-
-```sh
-npm install -g copyfiles
-```
 
 In your `.dev` directory:
 
