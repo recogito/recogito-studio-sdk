@@ -141,7 +141,7 @@ Make sure the following lines are in your `package.json`:
 
 ### Step 3: Create the Plugin Entry Point
 
-Create a subdirectory `src` in your project root. Inside the `src` directory, create a file called `index.ts`. This file is your main plugin entry point that will get registered by Recogito Studio. It **must provide a default export**, which must be an Astro Integration, and must regiter a single **Plugin**.
+Create a subdirectory `src` in your project root. Inside the `src` directory, create a file called `index.ts`. This file is your main plugin entry point that will get registered by Recogito Studio. It **must provide a default export**, which must be an Astro Integration, and must register a single **Plugin**.
 
 ```ts
 import type { AstroIntegration } from "astro";
@@ -221,7 +221,7 @@ Set up the test application to use your plugin. Open `.dev/package.json` and add
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     // Add this
-    "plugin-hello-world": "file:./"
+    "plugin-hello-world": "file:../"
   }
 ```
 
