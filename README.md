@@ -49,25 +49,52 @@ There is a GitHub template that you can use to quickly bootstrap your new projec
 <details>
 <summary>Create Project with GitHub Template</summary>
 
-### Create New Project From Template
+### Step 1: Create New Project From Template
 
 1. In your browser, go to the [template repository](https://github.com/recogito/plugin-template)
 2. Above the file list, click Use this template.
 3. Select Create a new repository.
 
-![](./images/use-this-template-button.webp)
+![](./images/use-this-template-button.png)
 
 4. Use the Owner dropdown menu to select the account you want to own the repository.
-
-![](./images/create-repository-owner.webp)
-
 5. Type a name for your repository, and an optional description.
 
-![](./images/create-repository-name.webp)
+![](./images/create-repository-owner.png)
 
 6. Choose a repository visibility.
 
-7. Click `Create repository from template`.
+7. Click `Create repository`.
+
+### Step 2: Clone Repository to Your Local Workspace
+
+In a terminal window clone the repository that you just created:
+
+```sh
+git clone https://github.com/[Your Repository].git
+```
+
+Change your directory to the cloned repository and run:
+
+```sh
+npm install
+```
+
+Open your `package.json` file and name your plugin. It should match the name you created above (i.e. @performant/plugin-hello-world).
+
+```diff
+{
+-   "name": "@recogito/plugin-template",
++   "name": "@performant/plugin-hello-world"
+  "version": "0.1.0",
+-   "description": "A template to boot-strap a new Recogito Studio plugin project.",
++   "description": "My new Recogito Studio Plugin"
+  ...
+}
+```
+
+You can now proceed to [Step 3](#step-3-create-the-plugin-entry-point). You will find that some of the proceeding steps have been taken care of by the template.
+
 </details>
 
 <details>
@@ -138,6 +165,10 @@ Make sure the following lines are in your `package.json`:
   }
 }
 ```
+
+</details>
+
+**Once you have completed with the [Template](#step-1-create-new-project-from-template) or [Manual](#step-1-initialize-a-new-plugin-project) Project Creation instructions, proceed:**
 
 ### Step 3: Create the Plugin Entry Point
 
@@ -329,8 +360,6 @@ In your project directory:
 - Run `npm run build` to build your plugin.
 - Run `npm run dev` to start the test application.
 
-</details>
-
 ## Test Your Extension
 
 At this point, you have a–basic, but fully functional–Recogito Studio plugin. Before deploying to Recogito, let's test it in the SDK test application.
@@ -391,7 +420,12 @@ Almost done! Now run `npm install`, `npm run dev` and point your browser to <htt
 
 To install a plugin into your Recogito Studio instance you need to **publish** them. You can either do this by:
 
-- Publishing the plugin as a [package on the npm registry](https://docs.npmjs.com/cli/v8/commands/npm-publish).
+- Publishing the plugin as a [package on the npm registry](https://docs.npmjs.com/cli/v8/commands/npm-publish). If you [bootstrapped your project with the Template repository](#step-1-create-new-project-from-template) then you have the commands to publish already in your `package.json`.
+
+```sh
+npm run publish
+```
+
 - Making your project repository public on Github, enabling people to [install the package directly from there](https://www.geeksforgeeks.org/how-to-install-an-npm-package-directly-from-github/).
 
 ### Installation
