@@ -253,7 +253,7 @@ export default defineConfig({
 Next we'll add a **React component** that displays a "Hello World" message in the annotation editor. Inside the `src` directory or your project root, create a subdirectory name `extensions` and create a new file `HelloWorldMessage.tsx`
 
 ```tsx
-// /src/HelloWorldMessage.tsx
+// /src/extensions/HelloWorldMessage.tsx
 
 export const HelloWorldMessage = () => {
   return <div>Hello World</div>;
@@ -313,7 +313,7 @@ Finally: your plugin's `package.json` must expose each UI extension as a sub-mod
     // Main module entry point – the default Astro Integration export
     ".": "./dist/index.js",
     // Module export for the HelloWorldMessage UI extension
-    "./HelloWorldMessage": "./dist/HelloWorldMessage.js"
+    "./HelloWorldMessage": "./dist/extensions/HelloWorldMessage.js"
   }
 }
 ```
