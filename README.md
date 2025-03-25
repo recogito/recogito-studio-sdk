@@ -51,7 +51,7 @@ There is a GitHub template that you can use to quickly bootstrap your new projec
 
 ### Create New Project From Template
 
-1. In you browser, go to the [template repository](https://github.com/recogito/plugin-template)
+1. In your browser, go to the [template repository](https://github.com/recogito/plugin-template)
 2. Above the file list, click Use this template.
 3. Select Create a new repository.
 
@@ -86,9 +86,9 @@ npm init -y
 Install the following dev dependencies:
 
 ```sh
-npm install --save-dev @types/node @types/react @types/react-dom typescript
+npm install --save-dev @types/node @types/react @types/react-dom typescript copyfiles
 npm install --save-dev astro react react-dom
-tsc --init -y
+npx tsc --init
 ```
 
 Then, install the Recogito Studio SDK as runtime dependencies:
@@ -141,7 +141,7 @@ Make sure the following lines are in your `package.json`:
 
 ### Step 3: Create the Plugin Entry Point
 
-Create a subdirectory `src` in your project root. Inside the `src` directory, create a file called `index.ts`. This file is your main plugin entry point that will get registered by Recogito Studio. It **must provide a default export**, which must be an Astro Integration, and must regiter a single **Plugin**.
+Create a subdirectory `src` in your project root. Inside the `src` directory, create a file called `index.ts`. This file is your main plugin entry point that will get registered by Recogito Studio. It **must provide a default export**, which must be an Astro Integration, and must register a single **Plugin**.
 
 ```ts
 import type { AstroIntegration } from "astro";
@@ -221,7 +221,7 @@ Set up the test application to use your plugin. Open `.dev/package.json` and add
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     // Add this
-    "plugin-hello-world": "file:./"
+    "plugin-hello-world": "file:../"
   }
 ```
 
@@ -253,7 +253,7 @@ export default defineConfig({
 Next we'll add a **React component** that displays a "Hello World" message in the annotation editor. Inside the `src` directory or your project root, create a subdirectory name `extensions` and create a new file `HelloWorldMessage.tsx`
 
 ```tsx
-// /src/HelloWorldMessage.tsx
+// /src/extensions/HelloWorldMessage.tsx
 
 export const HelloWorldMessage = () => {
   return <div>Hello World</div>;
@@ -319,12 +319,6 @@ Finally: your plugin's `package.json` must expose each UI extension as a sub-mod
 ```
 
 Congratulations. This sets up the foundation for your plugin!
-
-The build step requires [copyfiles](https://www.npmjs.com/package/copyfiles) if you do not have that installed run the following:
-
-```sh
-npm install -g copyfiles
-```
 
 In your `.dev` directory:
 
