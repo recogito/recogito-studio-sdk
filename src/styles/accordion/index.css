@@ -3,8 +3,13 @@
 }
 
 .accordion-item {
+	background-color: var(--gray-50);
+  border: 1px solid var(--gray-200);
 	overflow: hidden;
-	margin-top: 1px;
+}
+
+.accordion-item + .accordion-item {
+  border-top: none;
 }
 
 .accordion-item:first-child {
@@ -24,9 +29,14 @@
 }
 
 .accordion-header {
+	background-color: #fff; 
 	display: flex;
 	position: relative;
 	z-index: 2;
+}
+
+.accordion-header[data-state='open'] {
+	border-bottom: 1px solid var(--gray-200);
 }
 
 .accordion-root button.accordion-trigger {
