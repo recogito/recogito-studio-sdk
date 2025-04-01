@@ -6,6 +6,7 @@
 @import './dialog/index.css';
 @import './dropdown/index.css';
 @import './form/index.css';
+@import './select/index.css';
 
 :root {
   /** Colors **/
