@@ -7,6 +7,7 @@ export default defineConfig({
   build: {
     ssr: true,
     target: 'node16',
+    cssCodeSplit: false,
     lib: {
       entry: {
         'index': resolve(__dirname, 'src/index.ts'),
@@ -17,8 +18,9 @@ export default defineConfig({
     rollupOptions: {
       external: ['react', 'react-dom', 'react/jsx-runtime', 'fs-extra'],
       output: {
-        preserveModules: true
-      },
+        preserveModules: true,
+        assetFileNames: 'index.css'
+      }
     }
   }
 });
