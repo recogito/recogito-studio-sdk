@@ -21,14 +21,16 @@
 .accordion-item:focus-within {
 	position: relative;
 	z-index: 1;
-	box-shadow: 0 0 0 2px var(--gray-200);
 }
 
 .accordion-header {
 	display: flex;
+	position: relative;
+	z-index: 2;
 }
 
 .accordion-root button.accordion-trigger {
+	background-color: white;
 	font-family: inherit;
 	background-color: transparent;
 	padding: 0 20px;
@@ -38,7 +40,6 @@
 	align-items: center;
 	justify-content: space-between;
 	line-height: 1;
-	background-color: white;
 }
 
 .accordion-root button.accordion-trigger:hover {
@@ -46,7 +47,7 @@
 }
 
 .accordion-content {
-	overflow: hidden;
+	transform: translateY(-2px);
 }
 
 .accordion-content[data-state="open"] {
