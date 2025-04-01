@@ -167,7 +167,15 @@ p {
 }
 
 .sr-only {
-  clip: rect(0, 0, 0, 0) !important;
+  /** https://gist.github.com/ffoodd/000b59f431e3e64e4ce1a24d5bb36034 **/
+  border: 0 !important;
+	clip-path: inset(50%) !important;
+	height: 1px !important;
+	margin: -1px !important;
+	overflow: hidden !important;
+	padding: 0 !important;
+	width: 1px !important;
+	white-space: nowrap !important;
 }
 
 input,
