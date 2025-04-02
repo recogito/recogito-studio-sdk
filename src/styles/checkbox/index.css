@@ -1,0 +1,12 @@
+button.checkbox-root {
+  all: unset;
+  cursor: pointer;
+  display: inline;
+  line-height: normal;
+  vertical-align: middle;
+}
+
+button.checkbox-root:hover {
+  background: none;
+  box-shadow: none;
+}

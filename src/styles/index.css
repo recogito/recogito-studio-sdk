@@ -3,6 +3,7 @@
 
 @import './accordion/index.css';
 @import './button/index.css';
+@import './checkbox/index.css';
 @import './dialog/index.css';
 @import './dropdown/index.css';
 @import './form/index.css';
