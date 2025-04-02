@@ -1,3 +1,6 @@
+---
+import '@recogito/studio-sdk/style.css';
+---
 <!doctype html>
 <html lang="en">
 	<head>
@@ -8,17 +11,25 @@
 		<title>Recogito Studio Plugin Test</title>
 	</head>
 	<body>
-		<slot />
+		<div class="container">
+			<slot />
+		</div>
 	</body>
 </html>
 
 <style>
-	html,
-	body {
+	html, body {
+		background-color: #f2f2f2;
+		margin: 0;
+		padding: 0;
+		min-height: 100%;
+	}
+	
+	.container {
 		box-sizing: border-box;
 		font-family:Arial, Helvetica, sans-serif;
-		height: 100%;
-		padding: 0.5rem;
+		min-height: 100%;
+		padding: 0.5rem 2rem;
 		width: 100%;
 	}
 </style>
