@@ -455,9 +455,9 @@ Note that plugins may support additional config options at this step. Refer to t
 
 ## Component Styling
 
-The Recogito Studio Client utilizes [Radix UI](https://www.radix-ui.com/) primitives for building accessible and consistent interface components. To maintain visual coherence across the platform, we recommend that plugin developers also adopt Radix when constructing extension components.​
+The Recogito Studio Client utilizes [Radix UI](https://www.radix-ui.com/) primitives for building accessible and consistent interface components. We recommend that plugin developers also adopt Radix when developing extension components.​
 
-To make it easier for plugin developers to build visually consistent extensions that match Recogito Studio's native look and feel, the SDK provides a set of pre-defined CSS classes for common UI primitives. The following primitives and classes are available:
+To make it easier to build visually consistent extensions that match Recogito Studio's native look and feel, the SDK provides a set of pre-defined CSS classes for common UI primitives. The following primitives and classes are currently available:
 
 - [Accordion](https://github.com/recogito/recogito-studio-sdk/blob/main/src/styles/accordion/index.css). Base styles for the Radix Accordion primitive.
 - [Avatar](https://github.com/recogito/recogito-studio-sdk/blob/main/src/styles/avatar/index.css). The Recogito-themed user avatar.
