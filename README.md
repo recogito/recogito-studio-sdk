@@ -12,7 +12,7 @@ The Recogito Studio Client is an [Astro application](https://astro.build/). Reco
 
 ### UI Extension Framework
 
-Recogito Studio's built-in UI extension framework is based on [React’s lazy loading](https://react.dev/reference/react/lazy) and [Suspense](https://react.dev/reference/react/Suspense) mechanisms, and allows plugins to dynamically inject their own React components into defined **extension points** that the Recogito Studio Client defines.
+Recogito Studio's built-in UI extension framework is based on [React’s lazy loading](https://react.dev/reference/react/lazy) and [Suspense](https://react.dev/reference/react/Suspense) mechanisms, and allows plugins to dynamically inject their own React components into defined **extension points** that the Recogito Studio Client defines. The SDK also provides built-in **CSS style classes**, making it easy for extensions to re-use Recogito's native styling.
 
 To inject UI extensions, plugin developers must register their extensions following a specific process. This involves a small amount of boilerplate code, which the SDK helps simplify.
 
@@ -448,5 +448,28 @@ export default defineConfig({
 ```
 
 Note that plugins may support additional config options at this step. Refer to the plugin's documentation for details.
+</details>
 
+<details>
+<summary>Component Styling</summary>
+## Component Styling
+
+The Recogito Studio Client utilizes [Radix UI](https://www.radix-ui.com/) primitives for building accessible and consistent interface components. To maintain visual coherence across the platform, we recommend that plugin developers also adopt Radix when constructing extension components.​
+
+To make it easier for plugin developers to build visually consistent extensions that match Recogito Studio's native look and feel, the SDK provides a set of pre-defined CSS classes for common UI primitives. The following primitives and classes are available:
+
+- [Accordion](https://github.com/recogito/recogito-studio-sdk/blob/main/src/styles/accordion/index.css). Base styles for the Radix Accordion primitive.
+- [Avatar](https://github.com/recogito/recogito-studio-sdk/blob/main/src/styles/avatar/index.css). The Recogito-themed user avatar.
+- [Button](https://github.com/recogito/recogito-studio-sdk/tree/main/src/styles/button). A range of button variant styles (primary, minimal, unstyled, danger, etc.)
+- [Checkbox](https://github.com/recogito/recogito-studio-sdk/tree/main/src/styles/checkbox). Base styles for the Radix checkbox primitive.
+- [Dialog](https://github.com/recogito/recogito-studio-sdk/tree/main/src/styles/dialog). Default Radix popup dialog styles.
+- [Dropdown](https://github.com/recogito/recogito-studio-sdk/blob/main/src/styles/dropdown/index.css). Base styles for Recogito-themed dropdown menus.
+- [Form](https://github.com/recogito/recogito-studio-sdk/tree/main/src/styles/form). Minimal styles for form input elements.
+- [Popover](https://github.com/recogito/recogito-studio-sdk/blob/main/src/styles/popover/index.css). Base styles for the Radix popover primitive.
+- [Radio](https://github.com/recogito/recogito-studio-sdk/blob/main/src/styles/radio/index.css). Base styles for the Radix Radio primitive.
+- [Select](https://github.com/recogito/recogito-studio-sdk/blob/main/src/styles/select/index.css). Base styles for the Radix Select primitive.
+- [Switch](https://github.com/recogito/recogito-studio-sdk/blob/main/src/styles/switch/index.css). Base styles for the Radix Switch primitive.
+- [Tooltip](https://github.com/recogito/recogito-studio-sdk/tree/main/src/styles/tooltip). Styles for Recogito-themed mouse hover tooltips. 
+
+For details, check the [stylesheet files](https://github.com/recogito/recogito-studio-sdk/tree/main/src/styles) directly. 
 </details>
