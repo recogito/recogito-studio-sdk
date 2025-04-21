@@ -452,6 +452,7 @@ Note that plugins may support additional config options at this step. Refer to t
 
 <details>
 <summary>Component Styling</summary>
+
 ## Component Styling
 
 The Recogito Studio Client utilizes [Radix UI](https://www.radix-ui.com/) primitives for building accessible and consistent interface components. To maintain visual coherence across the platform, we recommend that plugin developers also adopt Radix when constructing extension components.​
