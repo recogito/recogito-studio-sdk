@@ -481,7 +481,7 @@ import * as Accordion from '@radix-ui/react-accordion';
 // ...
 
 <Accordion.Root
-  // User Recogito-provided `accordion-root` class
+  // Apply Recogito-provided `accordion-root` class
   className="accordion-root"
   type="multiple">
   <Accordion.AccordionItem 
