@@ -4,27 +4,26 @@ A software development kit for developing plugins to [Recogito Studio](https://r
 
 ## Introduction
 
-The **Recogito Studio SDK** is designed to facilitate plugin development for the **Recogito Studio Client application** without the need to set up your own full-stack installation or forking the platform. It provides essential tools and abstractions to help you build useful extensions for the Recogito Studio ecosystem.
+The **Recogito Studio SDK** is designed to facilitate plugin development for the [Recogito Studio Client](https://github.com/recogito/recogito-client) without the need to set up your own full-stack installation or forking the platform. It provides essential tools and abstractions to help you build useful extensions for the Recogito Studio ecosystem.
 
 ### Astro Integrations
 
-The Recogito Studio client is an [Astro application](https://astro.build/). Recogito Studio plugins are implemented as [Astro Integrations](https://docs.astro.build/en/guides/integrations-guide/), which means they can leverage all the standard capabilities that Astro Integrations provide, plus some additional features introduced by Recogito Studio's own UI extension framework. (More on that below.)
+The Recogito Studio Client is an [Astro application](https://astro.build/). Recogito Studio plugins are implemented as [Astro Integrations](https://docs.astro.build/en/guides/integrations-guide/), which means they can leverage all the standard capabilities that Astro Integrations provide, plus some additional features introduced by Recogito Studio's own UI extension framework. (More on that below.)
 
 ### UI Extension Framework
 
-Recogito Studio's built-in UI extension framework is based on [React’s lazy loading](https://react.dev/reference/react/lazy) and [Suspense](https://react.dev/reference/react/Suspense) mechanisms, and allows plugins to dynamically inject their own React components into defined **extension points** that Recogito Studio defines.
+Recogito Studio's built-in UI extension framework is based on [React’s lazy loading](https://react.dev/reference/react/lazy) and [Suspense](https://react.dev/reference/react/Suspense) mechanisms, and allows plugins to dynamically inject their own React components into defined **extension points** that the Recogito Studio Client defines.
 
-To inject UI extensions, plugin developers must register their extensions following a specific process. This involves a small amount of boilerplate code, which the SDK helps simplify. (We’ll cover the registration process in detail in the "Plugin Anatomy" section.)
+To inject UI extensions, plugin developers must register their extensions following a specific process. This involves a small amount of boilerplate code, which the SDK helps simplify.
 
 ### What Can Plugins Do?
 
-With the Recogito Studio SDK, plugins can, for example:
-
+Plugins can, for example:
 - Extend the annotation editor with new UI elements.
 - Replace existing UI elements in the editor, such as swapping the default tag widget with a custom version that integrates an external vocabulary service.
-- Enhance backend capabilities, e.g. introduce new API routes that exporting annotations in different data formats.
+- Enhance page and API capabilities, e.g. introduce new API routes that export annotations in different data formats.
 
-**Important:** Plugins are restricted to the client part of Recogito Studio. Specifically, this means **plugins can not change or add to the backend component ("Recogito Server")**. For example, it is not possible for plugins to change or add to the Supabase schema, or add additional DB or edge functions.
+**Important:** Plugins extend the Recogito Studio Client. This means **plugins can not change or add to the backend component ("Recogito Server")**. For example, it is not possible for plugins to change or add to the Supabase schema, or add additional DB or edge functions.
 
 <details>
 <summary>Getting Started</summary>
@@ -252,7 +251,7 @@ Set up the test application to use your plugin. Open `.dev/package.json` and add
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     // Add this
-    "plugin-hello-world": "file:../"
+    "@performant/plugin-hello-world": "file:../"
   }
 ```
 
@@ -263,7 +262,7 @@ import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import node from '@astrojs/node';
 
-+ import HelloWorldPlugin from 'plugin-hello-world';
++ import HelloWorldPlugin from '@performant/plugin-hello-world';
 
 export default defineConfig({
   integrations: [
@@ -281,10 +280,10 @@ export default defineConfig({
 
 ### Step 6: Create a UI Extension
 
-Next we'll add a **React component** that displays a "Hello World" message in the annotation editor. Inside the `src` directory or your project root, create a subdirectory name `extensions` and create a new file `HelloWorldMessage.tsx`
+Next we'll add a **React component** that displays a "Hello World" message in the annotation editor. Inside your `src` directory, create a subdirectory name `extensions` and create a new file `HelloWorldMessage.tsx`
 
 ```tsx
-// /src/extensions/HelloWorldMessage.tsx
+// ./src/extensions/HelloWorldMessage.tsx
 
 export const HelloWorldMessage = () => {
   return <div>Hello World</div>;
@@ -314,7 +313,7 @@ const HelloWorldPlugin: Plugin = {
 +  extensions: [{
 +    name: 'hello-world-message',
 +
-+    module_name: 'plugin-hello-world',
++    module_name: '@performant/plugin-hello-world',
 +
 +    component_name: 'HelloWorldMessage',
 +
@@ -377,7 +376,7 @@ npm run build
   //...
   "dependencies": {
     //...
-    "@recogito/plugin-hello-world": "file:../"
+    "@performant/plugin-hello-world": "file:../"
   }
 }
 ```
@@ -390,7 +389,7 @@ import react from "@astrojs/react";
 import node from "@astrojs/node";
 
 // This imports the plugin to the Astro config
-import HelloWorldPlugin from "plugin-hello-world";
+import HelloWorldPlugin from "@performant/plugin-hello-world";
 
 export default defineConfig({
   integrations: [
