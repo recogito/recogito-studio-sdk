@@ -472,5 +472,39 @@ To make it easier to build visually consistent extensions that match Recogito St
 - [Switch](https://github.com/recogito/recogito-studio-sdk/blob/main/src/styles/switch/index.css). Base styles for the Radix Switch primitive.
 - [Tooltip](https://github.com/recogito/recogito-studio-sdk/tree/main/src/styles/tooltip). Styles for Recogito-themed mouse hover tooltips. 
 
-For details, check the [stylesheet files](https://github.com/recogito/recogito-studio-sdk/tree/main/src/styles) directly. 
+To apply SDK-provided theming, all that's needed is to add the apporiate CSS classes to your components. For example:
+
+```tsx
+// Use Radix Accordion in your extension component
+import * as Accordion from '@radix-ui/react-accordion';
+
+// ...
+
+<Accordion.Root
+  // User Recogito-provided `accordion-root` class
+  className="accordion-root"
+  type="multiple">
+  <Accordion.AccordionItem 
+    value="item-1"
+    // Recogito-provided `accordion-item` class
+    className="accordion-item">
+    <Accordion.Header 
+      // Recogito-provided `accordion-header` class
+      className="accordion-header">
+			<Accordion.Trigger
+        // Recogito-provided `accordion-trigger` class
+				className="accordion-trigger">
+        Accordion Item 1 Trigger
+			</Accordion.Trigger>
+		</Accordion.Header>
+
+    <Accordion.AccordionContent 
+      // Recogito-provided `accordion-content` class
+      className="accordion-content">
+      Accordion Item 1 Content
+    </Accordion.AccordionItem>
+</Accordion.Root>
+```
+
+For details, classes and other components, check the [stylesheet files](https://github.com/recogito/recogito-studio-sdk/tree/main/src/styles) directly. 
 </details>
