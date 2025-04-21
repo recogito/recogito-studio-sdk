@@ -506,5 +506,7 @@ import * as Accordion from '@radix-ui/react-accordion';
 </Accordion.Root>
 ```
 
+![Styled accordion example](./images/styling-accordion.png)
+
 For details, classes and other components, check the [stylesheet files](https://github.com/recogito/recogito-studio-sdk/tree/main/src/styles) directly. 
 </details>
