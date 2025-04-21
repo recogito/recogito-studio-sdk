@@ -491,18 +491,19 @@ import * as Accordion from '@radix-ui/react-accordion';
     <Accordion.Header 
       // Recogito-provided `accordion-header` class
       className="accordion-header">
-			<Accordion.Trigger
+      <Accordion.Trigger
         // Recogito-provided `accordion-trigger` class
-				className="accordion-trigger">
+        className="accordion-trigger">
         Accordion Item 1 Trigger
-			</Accordion.Trigger>
-		</Accordion.Header>
+      </Accordion.Trigger>
+    </Accordion.Header>
 
     <Accordion.AccordionContent 
       // Recogito-provided `accordion-content` class
       className="accordion-content">
       Accordion Item 1 Content
-    </Accordion.AccordionItem>
+    </Accordion.AccordionContent>
+  </Accordion.AccordionItem>
 </Accordion.Root>
 ```
 
