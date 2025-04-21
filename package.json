@@ -20,13 +20,13 @@
     "postinstall": "echo 'Run `npx copy-template` to copy the template app to your project.'"
   },
   "devDependencies": {
-    "@annotorious/annotorious": "^3.3.3",
-    "@types/node": "^22.13.17",
-    "@types/react": "^19.1.0",
-    "@types/react-dom": "^19.1.1",
+    "@annotorious/annotorious": "^3.3.4",
+    "@types/node": "^22.14.1",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "vite": "^6.2.4",
+    "vite": "^6.3.2",
     "vite-plugin-dts": "^4.5.3"
   },
   "exports": {
@@ -39,9 +39,9 @@
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.7",
-    "@radix-ui/react-avatar": "^1.1.3",
-    "@supabase/ssr": "^0.5.2",
-    "@supabase/supabase-js": "^2.49.1",
+    "@radix-ui/react-avatar": "^1.1.6",
+    "@supabase/ssr": "^0.6.1",
+    "@supabase/supabase-js": "^2.49.4",
     "date-fns": "^4.1.0",
     "fs-extra": "^11.3.0"
   }
