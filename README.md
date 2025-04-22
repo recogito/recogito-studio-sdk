@@ -362,7 +362,7 @@ In your project directory:
 ### Step 7: Adding a Gallery Thumbnail
 
 We recommend adding a thumbnail image to your plugin. Recogito Studio will use it to represent your
-plugin in the Plugin Gallery. The thumbnail image can be a JPEG or PNG image with a size of 480 x 480 pixels. You can find a suitable placeholder [here](./images/gallery-thumbnail.png)
+plugin in the Plugin Gallery. The thumbnail image can be a JPEG or PNG image with a size of 480 x 480 pixels. You can find a suitable placeholder [here](./images/gallery-thumbnail.png).
 
 <img src="./images/gallery-thumbnail-example.png" alt="The Hello World plugin in the gallery" width="273"/>
 
