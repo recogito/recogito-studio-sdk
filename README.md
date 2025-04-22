@@ -157,8 +157,8 @@ Make sure the following lines are in your `package.json`:
   "type": "module",
   "files": ["dist"],
   "scripts": {
-    "build": "tsc && npm run copy-css",
-    "copy-css": "copyfiles -u 1 \"src/extensions/**/*.css\" dist"
+    "build": "tsc && npm run copy-files",
+    "copy-files": "copyfiles -u 1 \"src/extensions/**/*.css\" \"src/extensions/**/*.jpg\" dist"
   }
 }
 ```
@@ -177,6 +177,8 @@ import { Plugin, registerPlugin } from "@recogito/studio-sdk";
 
 const HelloWorldPlugin: Plugin = {
   name: "My Hello World Plugin",
+
+  module_name: '@performant/plugin-hello-world',
 
   description: "An example Hello World plugin.",
 
@@ -302,6 +304,8 @@ const HelloWorldPlugin: Plugin = {
 
   name: 'My Hello World Plugin',
 
+  module_name: '@performant/plugin-hello-world',
+
   description: 'An example Hello World plugin.',
 
   author: 'Performant Software',
@@ -310,8 +314,6 @@ const HelloWorldPlugin: Plugin = {
 
 +  extensions: [{
 +    name: 'hello-world-message',
-+
-+    module_name: '@performant/plugin-hello-world',
 +
 +    component_name: 'HelloWorldMessage',
 +
