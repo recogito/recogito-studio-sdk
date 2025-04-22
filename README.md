@@ -32,8 +32,6 @@ Plugins can, for example:
 
 The following steps walk you through the development of a **Hello World** plugin that adds a simple message to the annotation editor.
 
-> You can find the full result of this tutorial in this repository: [recogito/plugin-hello-world](https://github.com/recogito/plugin-hello-world).
-
 ### Prerequisites
 
 Before starting, make sure you have the following installed:
