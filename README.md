@@ -158,7 +158,7 @@ Make sure the following lines are in your `package.json`:
   "files": ["dist"],
   "scripts": {
     "build": "tsc && npm run copy-files",
-    "copy-files": "copyfiles -u 1 \"src/extensions/**/*.css\" \"src/extensions/**/*.jpg\" dist"
+    "copy-files": "copyfiles -u 1 \"src/extensions/**/*.css\" \"src/extensions/**/*.jpg\" \"src/extensions/**/*.png\" dist"
   }
 }
 ```
@@ -310,7 +310,7 @@ const HelloWorldPlugin: Plugin = {
 
   author: 'Performant Software',
 
-  homepage: 'https://www.performantsoftware.com/'
+  homepage: 'https://www.performantsoftware.com/',
 
 +  extensions: [{
 +    name: 'hello-world-message',
@@ -358,6 +358,68 @@ In your project directory:
 
 - Run `npm run build` to build your plugin.
 - Run `npm run dev` to start the test application.
+
+### Step 7: Adding a Gallery Thumbnail
+
+We recommend adding a thumbnail image to your plugin. Recogito Studio will use it to represent your
+plugin in the Plugin Gallery. The thumbnail image can be a JPEG or PNG image with a size of 480 x 480 pixels. You can find a suitable placeholder [here](./images/gallery-thumbnail.png)
+
+![The Hello World plugin in the gallery](./images/gallery-thumbnail-example.png)
+
+1. **Add the thumbnail image file to your project**. You can add the image anywhere in your plugin's `src` folder. A common convention is to put into an `assets` folder, for example:
+
+```
+src/assets/thumbnail.png
+```
+2. **Create an export in your package.json**. Edit your `package.json` file to export your thumbnail file.
+
+```jsonc
+{
+  // ...
+  "exports": {
+    // Main module entry point – the default Astro Integration export
+    ".": "./dist/index.js",
+    // Module export for the HelloWorldMessage UI extension
+    "./HelloWorldMessage": "./dist/extensions/HelloWorldMessage.js",
+    // Thumbnail export
+    "./thumbnail.png": "./dist/assets/thumbnail.png"
+  }
+}
+```
+
+3. **Update your plugin configuration**. Edit the plugin metadata in `src/index.ts` file to match the
+export in your `package.json`. 
+
+```diff
+import type { AstroIntegration } from 'astro';
+import { Plugin, registerPlugin } from '@recogito/studio-sdk';
+
+const HelloWorldPlugin: Plugin = {
+
+  name: 'My Hello World Plugin',
+
+  module_name: '@performant/plugin-hello-world',
+
+  description: 'An example Hello World plugin.',
+
+  author: 'Performant Software',
+
+  homepage: 'https://www.performantsoftware.com/',
+
++ thumbnail: 'thumbnail.png',
+
+  extensions: [{
+    name: 'hello-world-message',
+
+    component_name: 'HelloWorldMessage',
+
+    extension_point: 'annotation:*:annotation-editor'
+  }]
+
+};
+
+// ...
+```
 
 ## Test Your Extension
 
