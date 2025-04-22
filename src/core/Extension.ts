@@ -4,8 +4,6 @@ export interface Extension {
 
   extension_point: string;
 
-  module_name: string;
-
   component_name: string;
 
 }
