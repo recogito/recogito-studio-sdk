@@ -49,7 +49,7 @@ export const registerPlugin = (plugin: Plugin, config: any, logger: any) => {
     `const Thumbnails: Record<string, () => Promise<typeof import("*.jpg") | typeof import("*.png")>> = {\n`
   
   const records = other.filter(p => p.thumbnail).map(p => {
-    return `  ${p.name}: () => import('${p.module_name}/${p.thumbnail!}')`;
+    return `  '${p.name}': () => import('${p.module_name}/${p.thumbnail!}')`;
   });
 
   src += records.join(',\n')
