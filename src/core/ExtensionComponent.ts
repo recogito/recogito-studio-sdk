@@ -1,9 +1,10 @@
 import type { Annotation, Annotator, PresentUser, User } from '@annotorious/annotorious';
+import type { Document } from './Document';
 import type { Extension } from './Extension';
+import type { Layer } from './Layer';
 import type { Plugin } from './Plugin';
 import type { SupabaseAnnotation } from './SupbaseAnnotation';
 import type { VocabularyTerm } from './VocabularyTerm';
-import type { Document } from './Document';
 
 export interface ExtensionComponentProps<T extends unknown = any> {
 
@@ -38,6 +39,8 @@ export interface AnnotationEditorExtensionProps<T extends unknown = any> extends
   isEditable: boolean;
 
   isSelected: boolean;
+
+  layers?: Layer[];
 
   me: User | PresentUser;
 

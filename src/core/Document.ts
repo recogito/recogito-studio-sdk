@@ -51,22 +51,6 @@ export const Protocols = ['IIIF_IMAGE', 'IIIF_PRESENTATION'] as const;
 
 export type Protocol = (typeof Protocols)[number];
 
-export interface DocumentLayer {
-
-  id: string;
-
-  is_active?: boolean;
-
-  document: Document;
-
-  project_id: string;
-
-  name?: string;
-
-  context?: DocumentContext;
-
-}
-
 export interface DocumentContext {
 
   id: string;
