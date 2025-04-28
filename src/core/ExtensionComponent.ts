@@ -38,6 +38,8 @@ export interface AnnotationEditorExtensionProps<T extends unknown = any> extends
 
   isEditable: boolean;
 
+  isReadOnly: boolean;
+
   isSelected: boolean;
 
   layers?: Layer[];
