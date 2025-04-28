@@ -1,4 +1,4 @@
-import type { PresentUser, User } from '@annotorious/annotorious';
+import type { Annotation, Annotator, PresentUser, User } from '@annotorious/annotorious';
 import type { Extension } from './Extension';
 import type { Plugin } from './Plugin';
 import type { SupabaseAnnotation } from './SupbaseAnnotation';
@@ -62,5 +62,11 @@ export interface TagAutosuggestExtensionProps<T extends unknown = any> extends E
   onChange(term: VocabularyTerm): void;
 
   onSubmit(term: VocabularyTerm): void;
+
+}
+
+export interface AnnotatorExtensionProps<A extends Annotation, T extends unknown = any> extends ExtensionComponentProps<T> {
+
+  anno: Annotator<A>;
 
 }
