@@ -36,8 +36,6 @@ export interface AnnotationEditorExtensionProps<T extends unknown = any> extends
 
   annotation: SupabaseAnnotation;
 
-  isEditable: boolean;
-
   isReadOnly: boolean;
 
   isSelected: boolean;
