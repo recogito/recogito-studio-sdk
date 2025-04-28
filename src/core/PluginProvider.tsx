@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from 'react';
 import type { ReactNode } from 'react';
 import type { PluginInstallationConfig } from './PluginInstallationConfig';
-import type { Extension } from './Extension';
+import type { Extension, ExtensionPoint } from './Extension';
 import { matchesExtensionPoint } from './utils';
 
 interface PluginProviderContextValue {
@@ -45,14 +45,14 @@ export const PluginProvider = (props: PluginProviderProps) => {
 
 }
 
-export const usePlugins = (pattern: string) => {
+export const usePlugins = (pattern: ExtensionPoint) => {
   const { installed } = useContext(PluginProviderContext);
   return installed.filter(installed => 
       (installed.plugin.extensions || []).map(e => 
         e.extension_point).some(e => matchesExtensionPoint(pattern, e)));
 }
 
-export const useExtensions = (pattern: string) => {
+export const useExtensions = (pattern: ExtensionPoint) => {
   const installed = usePlugins(pattern);
   return installed.reduce<{ extension: Extension, config: PluginInstallationConfig }[]>((all, config) => {
     return [
