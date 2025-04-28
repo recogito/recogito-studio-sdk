@@ -1,8 +1,10 @@
+import type { ExtensionPoint } from '../Extension';
+
 /**
  * Tests if a specific pattern matches an existing Recogito
  * extensions point name.
  */
-export const matchesExtensionPoint = (pattern: string, extensionPoint: string) => {
+export const matchesExtensionPoint = (pattern: string, extensionPoint: ExtensionPoint) => {
   const patternSegments = pattern.split(/[\.,:]+/);
 
   const epSegments = extensionPoint.split(/[\.,:]+/);
