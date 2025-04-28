@@ -104,7 +104,7 @@ Create a new directory for your plugin and initialize an npm project:
 ```sh
 mkdir plugin-hello-world
 cd plugin-hello-world
-npm init -y
+npm init
 ```
 
 Install the following dev dependencies:
@@ -112,7 +112,6 @@ Install the following dev dependencies:
 ```sh
 npm install --save-dev @types/node @types/react @types/react-dom typescript copyfiles
 npm install --save-dev astro react react-dom
-npx tsc --init
 ```
 
 Then, install the Recogito Studio SDK as runtime dependencies:
