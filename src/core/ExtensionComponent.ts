@@ -1,4 +1,5 @@
 import type { Annotation, Annotator, PresentUser, User } from '@annotorious/annotorious';
+import type { Context } from './Context';
 import type { Document } from './Document';
 import type { Extension } from './Extension';
 import type { Layer } from './Layer';
@@ -24,11 +25,11 @@ export interface AdminExtensionProps<T extends unknown = any> extends ExtensionC
 
 export interface DocumentCardActionsExtensionProps<T extends unknown = any> extends ExtensionComponentProps<T> {
 
-  documentId: string;
+  document: Document;
 
   projectId: string;
 
-  contextId: string;
+  context: Context;
 
 }
 
