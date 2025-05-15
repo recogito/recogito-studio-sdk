@@ -1,7 +1,13 @@
 ---
-import fixtures from '../../../test/fixtures.json';
 import Layout from '../layouts/Layout.astro';
 import { PluginRegistry, ExtensionMount } from '../plugins';
+
+let fixtures = {};
+try {
+  fixtures = await import('../../../test/fixtures.json').then(m => m.default);
+} catch (error) {
+  fixtures = {};
+}
 
 const extensions = PluginRegistry.enumerateExtensions();
 
