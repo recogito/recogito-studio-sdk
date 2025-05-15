@@ -2,6 +2,7 @@ import { createSupabaseServerClient } from './supabase-server-client';
 import { createSupabaseBrowserClient } from './supabase-browser-client';
 import type { SupabaseClient } from '@supabase/supabase-js';
 import { getAnnotations } from './annotations';
+import { getDocument } from './document';
 import { getMyProfile } from './profile';
 import { hasSelectPermissions } from './project';
 import { 
@@ -14,6 +15,10 @@ import {
 const createSDK = (supabase: SupabaseClient) => ({
   annotations: {
     get: getAnnotations(supabase)
+  },
+
+  document: {
+    get: getDocument(supabase)
   },
 
   layers: {
@@ -29,7 +34,9 @@ const createSDK = (supabase: SupabaseClient) => ({
 
   project: {
     hasSelectPermissions: hasSelectPermissions(supabase)
-  }
+  },
+
+  storage: supabase.storage
 });
 
 const parseEnv = (env: ImportMetaEnv) => {
