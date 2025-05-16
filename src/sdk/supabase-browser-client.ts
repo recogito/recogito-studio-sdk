@@ -1,5 +1,5 @@
-import { type SupabaseClient } from '@supabase/supabase-js';
-import { createBrowserClient } from '@supabase/ssr';
+import { type SupabaseClient } from "@supabase/supabase-js";
+import { createBrowserClient } from "@supabase/ssr";
 
 // Not ideal but prevents the browser client from being generated on the server
 export const createSupabaseBrowserClient = (

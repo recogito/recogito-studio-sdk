@@ -11,10 +11,9 @@ import {
   getLayersInContext, 
   getLayersInProject 
 } from './layers';
-
 const createSDK = (supabase: SupabaseClient) => ({
   annotations: {
-    get: getAnnotations(supabase)
+    get: getAnnotations(supabase),
   },
 
   document: {
@@ -25,41 +24,45 @@ const createSDK = (supabase: SupabaseClient) => ({
     getLayersInContext: getLayersInContext(supabase),
     getLayersInProject: getLayersInProject(supabase),
     getDocumentLayersInContext: getDocumentLayersInContext(supabase),
-    getDocumentLayersInProject: getDocumentLayersInProject(supabase)
+    getDocumentLayersInProject: getDocumentLayersInProject(supabase),
   },
 
   profile: {
-    getMyProfile: getMyProfile(supabase)
+    getMyProfile: getMyProfile(supabase),
   },
 
   project: {
-    hasSelectPermissions: hasSelectPermissions(supabase)
+    hasSelectPermissions: hasSelectPermissions(supabase),
   },
+
+  supabase,
 
   storage: supabase.storage
 });
 
 const parseEnv = (env: ImportMetaEnv) => {
-  const { SUPABASE_SERVERCLIENT_URL, PUBLIC_SUPABASE, PUBLIC_SUPABASE_API_KEY } = env;
+  const {
+    SUPABASE_SERVERCLIENT_URL,
+    PUBLIC_SUPABASE,
+    PUBLIC_SUPABASE_API_KEY,
+  } = env;
   return {
     supabaseServerUrl: SUPABASE_SERVERCLIENT_URL || PUBLIC_SUPABASE,
-    supabaseAPIKey: PUBLIC_SUPABASE_API_KEY
+    supabaseAPIKey: PUBLIC_SUPABASE_API_KEY,
   };
-}
+};
 
 export const createServerSDK = (
-  request: Request, 
-  cookies: any, 
+  request: Request,
+  cookies: any,
   env: ImportMetaEnv
 ) => {
   const supabase = createSupabaseServerClient(request, cookies, parseEnv(env));
-  return supabase.then(supabase => createSDK(supabase));
-}
+  return supabase.then((supabase) => createSDK(supabase));
+};
 
-export const createBrowserSDK = (
-  env: ImportMetaEnv
-) => {
+export const createBrowserSDK = (env: ImportMetaEnv) => {
   const supabase = createSupabaseBrowserClient(parseEnv(env));
   if (!supabase) return;
   return createSDK(supabase);
-}
+};
