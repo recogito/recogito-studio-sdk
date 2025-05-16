@@ -1,20 +1,23 @@
-import { createSupabaseServerClient } from "./supabase-server-client";
-import { createSupabaseBrowserClient } from "./supabase-browser-client";
-import type { SupabaseClient } from "@supabase/supabase-js";
-import { getAnnotations } from "./annotations";
-import { getMyProfile } from "./profile";
-import { hasSelectPermissions } from "./project";
-import {
-  getDocumentLayersInContext,
-  getDocumentLayersInProject,
-  getLayersInContext,
-  getLayersInProject,
-} from "./layers";
-import { getDocument } from "./documents";
-
+import { createSupabaseServerClient } from './supabase-server-client';
+import { createSupabaseBrowserClient } from './supabase-browser-client';
+import type { SupabaseClient } from '@supabase/supabase-js';
+import { getAnnotations } from './annotations';
+import { getDocument } from './document';
+import { getMyProfile } from './profile';
+import { hasSelectPermissions } from './project';
+import { 
+  getDocumentLayersInContext, 
+  getDocumentLayersInProject, 
+  getLayersInContext, 
+  getLayersInProject 
+} from './layers';
 const createSDK = (supabase: SupabaseClient) => ({
   annotations: {
     get: getAnnotations(supabase),
+  },
+
+  document: {
+    get: getDocument(supabase)
   },
 
   layers: {
@@ -32,11 +35,9 @@ const createSDK = (supabase: SupabaseClient) => ({
     hasSelectPermissions: hasSelectPermissions(supabase),
   },
 
-  document: {
-    getDocument: getDocument(supabase),
-  },
-
   supabase,
+
+  storage: supabase.storage
 });
 
 const parseEnv = (env: ImportMetaEnv) => {
