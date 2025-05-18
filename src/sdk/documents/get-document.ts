@@ -1,5 +1,5 @@
-import { SupabaseClient } from "@supabase/supabase-js";
-import type { Document } from "../../core";
+import { SupabaseClient } from '@supabase/supabase-js';
+import type { Document } from '../../core';
 
 export const getDocument = (
   supabase: SupabaseClient

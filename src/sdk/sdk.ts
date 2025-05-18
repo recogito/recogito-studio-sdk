@@ -13,10 +13,10 @@ import {
 } from './layers';
 const createSDK = (supabase: SupabaseClient) => ({
   annotations: {
-    get: getAnnotations(supabase),
+    get: getAnnotations(supabase)
   },
 
-  document: {
+  documents: {
     get: getDocument(supabase)
   },
 
@@ -24,15 +24,15 @@ const createSDK = (supabase: SupabaseClient) => ({
     getLayersInContext: getLayersInContext(supabase),
     getLayersInProject: getLayersInProject(supabase),
     getDocumentLayersInContext: getDocumentLayersInContext(supabase),
-    getDocumentLayersInProject: getDocumentLayersInProject(supabase),
+    getDocumentLayersInProject: getDocumentLayersInProject(supabase)
   },
 
   profile: {
-    getMyProfile: getMyProfile(supabase),
+    getMyProfile: getMyProfile(supabase)
   },
 
   project: {
-    hasSelectPermissions: hasSelectPermissions(supabase),
+    hasSelectPermissions: hasSelectPermissions(supabase)
   },
 
   supabase,
@@ -44,11 +44,11 @@ const parseEnv = (env: ImportMetaEnv) => {
   const {
     SUPABASE_SERVERCLIENT_URL,
     PUBLIC_SUPABASE,
-    PUBLIC_SUPABASE_API_KEY,
+    PUBLIC_SUPABASE_API_KEY
   } = env;
   return {
     supabaseServerUrl: SUPABASE_SERVERCLIENT_URL || PUBLIC_SUPABASE,
-    supabaseAPIKey: PUBLIC_SUPABASE_API_KEY,
+    supabaseAPIKey: PUBLIC_SUPABASE_API_KEY
   };
 };
 
