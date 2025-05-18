@@ -2,7 +2,7 @@ import { createSupabaseServerClient } from './supabase-server-client';
 import { createSupabaseBrowserClient } from './supabase-browser-client';
 import type { SupabaseClient } from '@supabase/supabase-js';
 import { getAnnotations } from './annotations';
-import { getDocument } from './document';
+import { getDocument } from './documents';
 import { getMyProfile } from './profile';
 import { hasSelectPermissions } from './project';
 import { 

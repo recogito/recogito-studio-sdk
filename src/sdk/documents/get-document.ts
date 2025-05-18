@@ -1,9 +1,13 @@
 import { SupabaseClient } from "@supabase/supabase-js";
 import type { Document } from "../../core";
 
-export const getDocument = (supabase: SupabaseClient) => (documentId: string) =>
+export const getDocument = (
+  supabase: SupabaseClient
+) => (
+  documentId: string
+) =>
   supabase
-    .from("documents")
+    .from('documents')
     .select(
       `
       id,
@@ -15,9 +19,11 @@ export const getDocument = (supabase: SupabaseClient) => (documentId: string) =>
       bucket_id,
       content_type,
       meta_data,
+      collection_id,
+      collection_metadata,
       is_private
     `
     )
-    .eq("id", documentId)
+    .eq('id', documentId)
     .single()
     .then(({ error, data }) => ({ error, data: data as Document }));
