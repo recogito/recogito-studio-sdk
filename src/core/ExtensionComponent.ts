@@ -31,6 +31,8 @@ export interface DocumentCardActionsExtensionProps<T extends unknown = any> exte
 
   context: Context;
 
+  closeDialog(): void;
+
 }
 
 export interface AnnotationEditorExtensionProps<T extends unknown = any> extends ExtensionComponentProps<T> {
