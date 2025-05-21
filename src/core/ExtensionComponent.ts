@@ -35,6 +35,13 @@ export interface DocumentCardActionsExtensionProps<T extends unknown = any> exte
 
 }
 
+export interface AnnotatorExtensionProps<A extends Annotation, T extends unknown = any> extends ExtensionComponentProps<T> {
+
+  anno: Annotator<A>;
+
+}
+
+
 export interface AnnotationEditorExtensionProps<T extends unknown = any> extends ExtensionComponentProps<T> {
 
   annotation: SupabaseAnnotation;
@@ -54,25 +61,5 @@ export interface AnnotationEditorExtensionProps<T extends unknown = any> extends
 export interface AnnotationToolbarExtensionProps<T extends unknown = any> extends ExtensionComponentProps<T> {
 
   document: Document;
-
-}
-
-export interface TaglistExtensionProps<T extends unknown = any> extends ExtensionComponentProps<T> {
-
-  autoFocus?: boolean;
-
-  autoSize?: boolean;
-
-  value?: VocabularyTerm;
-
-  onChange(term: VocabularyTerm): void;
-
-  onSubmit(term: VocabularyTerm): void;
-
-}
-
-export interface AnnotatorExtensionProps<A extends Annotation, T extends unknown = any> extends ExtensionComponentProps<T> {
-
-  anno: Annotator<A>;
 
 }
