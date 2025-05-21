@@ -13,6 +13,7 @@ type AnnotationViewExtensionPoint =
   | `annotation:${AnnotationViewType}:annotation-editor`
   | `annotation:${AnnotationViewType}:annotator`
   | `annotation:${AnnotationViewType}:toolbar`
+  | `annotation:${AnnotationViewType}:taglist`;
 
 type ProjectExtensionPoint = 'project:document-actions';
 
@@ -20,3 +21,5 @@ export type ExtensionPoint =
   | 'admin' 
   | AnnotationViewExtensionPoint 
   | ProjectExtensionPoint;
+
+  
