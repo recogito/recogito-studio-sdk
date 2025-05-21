@@ -57,7 +57,7 @@ export interface AnnotationToolbarExtensionProps<T extends unknown = any> extend
 
 }
 
-export interface TagAutosuggestExtensionProps<T extends unknown = any> extends ExtensionComponentProps<T> {
+export interface TaglistExtensionProps<T extends unknown = any> extends ExtensionComponentProps<T> {
 
   autoFocus?: boolean;
 
