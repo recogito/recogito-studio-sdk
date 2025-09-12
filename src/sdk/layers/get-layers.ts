@@ -1,5 +1,5 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
-import type { DocumentLayer } from '../../core';
+import { parsePolicies, type DocumentLayer } from '../../core';
 
 const SELECT_STATEMENT = `
   id, 
@@ -22,6 +22,17 @@ const flattenLayerResponse = (data?: any[] | null) => {
 
   return flattened as DocumentLayer[];
 }
+
+export const getLayerPolicies = (
+  supabase: SupabaseClient
+) => (
+  layerId: string
+) => supabase
+  .rpc('get_layer_policies', { _layer_id: layerId })
+  .then(({ error, data}) => {
+    if (error || !data) return { error, data: undefined };
+    return { error, data: parsePolicies(data) }
+  });
 
 export const getLayersInProject = (
   supabase: SupabaseClient

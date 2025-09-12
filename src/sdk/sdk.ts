@@ -8,9 +8,11 @@ import { hasSelectPermissions } from './project';
 import { 
   getDocumentLayersInContext, 
   getDocumentLayersInProject, 
+  getLayerPolicies, 
   getLayersInContext, 
   getLayersInProject 
 } from './layers';
+
 const createSDK = (supabase: SupabaseClient) => ({
   annotations: {
     get: getAnnotations(supabase)
@@ -24,7 +26,8 @@ const createSDK = (supabase: SupabaseClient) => ({
     getLayersInContext: getLayersInContext(supabase),
     getLayersInProject: getLayersInProject(supabase),
     getDocumentLayersInContext: getDocumentLayersInContext(supabase),
-    getDocumentLayersInProject: getDocumentLayersInProject(supabase)
+    getDocumentLayersInProject: getDocumentLayersInProject(supabase),
+    getLayerPolicies: getLayerPolicies(supabase)
   },
 
   profile: {
