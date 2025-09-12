@@ -1,4 +1,4 @@
-import { type SupabaseClient } from '@supabase/supabase-js';
+import type { SupabaseClient } from '@supabase/supabase-js';
 import { createBrowserClient } from '@supabase/ssr';
 
 // Not ideal but prevents the browser client from being generated on the server
