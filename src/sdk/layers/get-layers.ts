@@ -4,27 +4,23 @@ import type { DocumentLayer } from '../../core';
 const SELECT_STATEMENT = `
   id, 
   document_id,
-  document:documents (
-    *
-  ),
   project_id, 
   name,
   description,
   contexts:layer_contexts!inner (
-    ...contexts!inner (
-      id,
-      name,  
-      project_id
-    )
+    is_active_layer,
+    context_id
   )`;
 
 const flattenLayerResponse = (data?: any[] | null) => {
-  const flattened = data?.map(({ contexts, ...layer }) => ({
+  if (!data) return;
+
+  const flattened = data.map(({ contexts, ...layer }) => ({
     ...layer,
-    context: contexts[0],
+    ...contexts[0]
   }));
 
-  return flattened as unknown as DocumentLayer[];
+  return flattened as DocumentLayer[];
 }
 
 export const getLayersInProject = (

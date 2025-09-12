@@ -1,18 +1,18 @@
-import type { DocumentContext } from './Document';
-
 export interface DocumentLayer {
 
   id: string;
 
-  is_active?: boolean;
+  is_active_layer?: boolean;
 
-  document: Document;
+  document_id: string;
 
   project_id: string;
 
   name?: string;
 
-  context?: DocumentContext;
+  description?: string;
+
+  context_id: string;
 
 }
 
