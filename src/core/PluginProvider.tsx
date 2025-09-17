@@ -48,8 +48,8 @@ export const PluginProvider = (props: PluginProviderProps) => {
 export const usePlugins = (pattern: ExtensionPoint) => {
   const { installed } = useContext(PluginProviderContext);
   return installed.filter(installed => 
-      (installed.plugin.extensions || []).map(e => 
-        e.extension_point).some(e => matchesExtensionPoint(pattern, e)));
+    (installed.plugin.extensions || []).map(e => 
+      e.extension_point).some(e => matchesExtensionPoint(pattern, e)));
 }
 
 export const useExtensions = (pattern: ExtensionPoint) => {

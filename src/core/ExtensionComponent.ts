@@ -5,7 +5,6 @@ import type { Extension } from './Extension';
 import type { Layer } from './Layer';
 import type { Plugin } from './Plugin';
 import type { SupabaseAnnotation } from './SupbaseAnnotation';
-import type { VocabularyTerm } from './VocabularyTerm';
 
 export interface ExtensionComponentProps<T extends unknown = any> {
 
