@@ -5,7 +5,7 @@ import { getAnnotations } from './annotations';
 import { getContext, isOpenJoinEditFromContext } from './contexts';
 import { getDocument } from './documents';
 import { getMyProfile } from './profile';
-import { hasSelectPermissions } from './project';
+import { getProject, hasSelectPermissions } from './project';
 import { 
   getDocumentLayersInContext, 
   getDocumentLayersInProject, 
@@ -41,6 +41,7 @@ const createSDK = (supabase: SupabaseClient) => ({
   },
 
   project: {
+    get: getProject(supabase),
     hasSelectPermissions: hasSelectPermissions(supabase)
   },
 

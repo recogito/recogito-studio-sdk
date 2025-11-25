@@ -10,5 +10,6 @@ export * from './PluginInstallationConfig';
 export * from './PluginProvider';
 export * from './Policies';
 export * from './Profile';
+export * from './Project';
 export * from './SupbaseAnnotation';
 export * from './VocabularyTerm';
