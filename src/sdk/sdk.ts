@@ -2,6 +2,7 @@ import { createSupabaseServerClient } from './supabase-server-client';
 import { createSupabaseBrowserClient } from './supabase-browser-client';
 import type { SupabaseClient } from '@supabase/supabase-js';
 import { getAnnotations } from './annotations';
+import { getContext, isOpenJoinEditFromContext } from './contexts';
 import { getDocument } from './documents';
 import { getMyProfile } from './profile';
 import { hasSelectPermissions } from './project';
@@ -16,6 +17,11 @@ import {
 const createSDK = (supabase: SupabaseClient) => ({
   annotations: {
     get: getAnnotations(supabase)
+  },
+
+  contexts: {
+    get: getContext(supabase),
+    isOpenJoinEdit: isOpenJoinEditFromContext(supabase),
   },
 
   documents: {
