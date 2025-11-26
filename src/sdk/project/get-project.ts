@@ -9,7 +9,8 @@ export const getProject = (
   .from('projects')
   .select(`
     id,
-    name
+    name,
+    is_locked
   `)
   .eq('id', projectId)
   .single()
