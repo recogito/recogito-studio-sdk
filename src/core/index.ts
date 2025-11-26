@@ -1,4 +1,5 @@
 export * from './utils';
+export * from './Context';
 export * from './Document';
 export * from './Extension';
 export * from './ExtensionComponent';
@@ -9,5 +10,6 @@ export * from './PluginInstallationConfig';
 export * from './PluginProvider';
 export * from './Policies';
 export * from './Profile';
+export * from './Project';
 export * from './SupbaseAnnotation';
 export * from './VocabularyTerm';
