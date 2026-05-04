@@ -1,6 +1,6 @@
 {
   "name": "@recogito/studio-sdk",
-  "version": "0.8.0-beta",
+  "version": "0.8.0",
   "description": "Plugin SDK for the Recogito Studio Client",
   "license": "MIT",
   "author": "Rainer Simon",
@@ -20,7 +20,7 @@
     "postinstall": "echo 'Run `npx copy-template` to copy the template app to your project.'"
   },
   "devDependencies": {
-    "@annotorious/annotorious": "^3.8.1",
+    "@annotorious/annotorious": "^3.8.2",
     "@types/node": "^25.6.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
@@ -35,14 +35,14 @@
     "./components": "./dist/components/index.js"
   },
   "peerDependencies": {
-    "astro": ">= ^5.0 || >= ^6.0"
+    "astro": ">= ^6.2.1"
   },
   "dependencies": {
     "@phosphor-icons/react": "2.1.10",
     "@radix-ui/react-avatar": "^1.1.11",
-    "@supabase/ssr": "^0.6.1",
-    "@supabase/supabase-js": "^2.49.4",
+    "@supabase/ssr": "^0.10.2",
+    "@supabase/supabase-js": "^2.105.1",
     "date-fns": "^4.1.0",
-    "fs-extra": "^11.3.0"
+    "fs-extra": "^11.3.4"
   }
 }
