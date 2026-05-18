@@ -6,6 +6,7 @@ export default defineConfig({
   plugins: [dts()],
   build: {
     ssr: true,
+    ssrEmitAssets: true,
     target: 'node16',
     cssCodeSplit: false,
     lib: {
