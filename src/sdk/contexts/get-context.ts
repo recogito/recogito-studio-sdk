@@ -4,7 +4,7 @@ import { type Context } from '../../core';
 export const getContext = (
   supabase: SupabaseClient
 ) => (
-  projectId: string
+  contextId: string
 ) => supabase
   .from('contexts')
   .select(`
@@ -12,7 +12,7 @@ export const getContext = (
     name,
     project_id
   `)
-  .eq('id', projectId)
+  .eq('id', contextId)
   .single()
   .then(({ error, data }) =>{ 
   if (error || !data) return { error, data: undefined };
