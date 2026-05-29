@@ -1,4 +1,5 @@
-import { useAnnotator, type PresentUser, type User } from '@annotorious/react';
+import { PRESENCE_KEY } from '@annotorious/core';
+import { type PresentUser, type User } from '@annotorious/react';
 import { animated, useTransition } from '@react-spring/web';
 import * as Popover from '@radix-ui/react-popover';
 import * as Tooltip from '@radix-ui/react-tooltip';
@@ -27,9 +28,7 @@ const getDisplayName = (user?: PresentUser | User) => {
 }
 
 export const PresenceStack = (props: PresenceStackProps) => {
-  const anno = useAnnotator();
-
-  const isMe = (user: PresentUser) => user.id === anno.getUser().id;
+  const isMe = (user: PresentUser) => user.presenceKey === PRESENCE_KEY;
 
   const limit = props.limit || 4;
 
