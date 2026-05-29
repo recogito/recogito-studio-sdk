@@ -8,6 +8,8 @@ interface AvatarProps {
 
   name?: string;
 
+  initials?: string;
+
   color?: string;
 
   avatar?: string;
@@ -35,7 +37,7 @@ const stringToHash = (str: string) => {
   return hash;
 };
 
-const getInitials = (name: string): string => {
+export const getInitials = (name: string): string => {
   const tokens = name.split(/\s+/);
   if (tokens.length === 1) {
     return tokens[0].charAt(0).toUpperCase();
@@ -47,15 +49,20 @@ const getInitials = (name: string): string => {
 };
 
 export const Avatar = (props: AvatarProps) => {
-  const { id, name, color, avatar } = props;
+  const { id, name, initials, color, avatar } = props;
 
-  const fallbackColor = `hsl(${stringToHash(id) % 360}, 35%, 48%)`;
+  const hue = Math.abs(stringToHash(id)) % 360;
+  const fallbackColor = `hsl(${hue}, 50%, 75%)`;
+  const fallbackTextColor = `hsl(${hue}, 60%, 10%)`;
+
+  const displayInitials = initials || (name ? getInitials(name) : undefined);
 
   return (
     <RadixAvatar.Root className='avatar'>
-      <span 
+      <span
         className={color ? 'avatar-wrapper ring' : 'avatar-wrapper'}
-        style={color ? { borderColor: color } : undefined}>
+        style={color ? { borderColor: color } : undefined}
+      >
         {avatar && (
           <RadixAvatar.Image
             className='avatar-image'
@@ -65,8 +72,9 @@ export const Avatar = (props: AvatarProps) => {
 
         <RadixAvatar.Fallback
           className='avatar-fallback'
-          style={{ backgroundColor: fallbackColor }}>
-          {name ? getInitials(name) : <User size={16} />}
+          style={{ backgroundColor: fallbackColor, color: fallbackTextColor }}
+        >
+          {displayInitials ? displayInitials : <User size={16} />}
         </RadixAvatar.Fallback>
       </span>
     </RadixAvatar.Root>
