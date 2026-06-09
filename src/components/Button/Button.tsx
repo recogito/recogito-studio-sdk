@@ -1,10 +1,9 @@
-import type { ReactNode } from 'react';
+import { forwardRef, type ReactNode, type Ref } from 'react';
 import { Spinner } from '../Spinner';
 
 import './Button.css';
 
 interface ButtonProps {
-
   busy?: boolean;
 
   children: ReactNode;
@@ -16,27 +15,20 @@ interface ButtonProps {
   type?: 'submit' | 'button';
 
   onClick?(evt: React.MouseEvent): void;
-
 }
 
-export const Button = (props: ButtonProps) => {
-  
-  const className = 
-    `${props.className || ' '} ${props.busy ? 'busy' : ''}`.trim();
-    
-  return (
-    <button
-      className={className} 
-      disabled={props.disabled}
-      type={props.type} 
-      onClick={props.onClick}>
-      
-      {props.children}
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  (props, ref) => {
+    const { busy, children, ...rest } = props;
 
-      {props.busy && (
-        <Spinner className="button-busy-spinner" size={16} />
-      )}
-    </button>
-  )
+    const className = `${props.className || ' '} ${busy ? 'busy' : ''}`.trim();
 
-}
+    return (
+      <button ref={ref} className={className} {...rest}>
+        {children}
+
+        {busy && <Spinner className="button-busy-spinner" size={16} />}
+      </button>
+    );
+  },
+);
