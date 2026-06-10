@@ -1,4 +1,5 @@
 export * from './AutosizeInput';
+export * from './Autosuggest';
 export * from './Avatar';
 export * from './Button';
 export * from './Presence';
