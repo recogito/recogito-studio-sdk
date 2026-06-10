@@ -3,8 +3,6 @@ import * as Popover from '@radix-ui/react-popover';
 import { AutosizeInput } from '../AutosizeInput';
 import type { VocabularyTerm } from '../../core';
 
-import './Autosuggest.css';
-
 const getVocabSuggestions = (query: string, vocabulary?: VocabularyTerm[]) =>
   (vocabulary || []).filter((term) =>
     term.label.toLowerCase().startsWith(query.toLowerCase()),

@@ -1,5 +1,3 @@
-import './Spinner.css';
-
 interface SpinnerProps {
 
   className?: string; 

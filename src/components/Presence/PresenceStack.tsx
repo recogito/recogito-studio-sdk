@@ -5,8 +5,6 @@ import * as Popover from '@radix-ui/react-popover';
 import * as Tooltip from '@radix-ui/react-tooltip';
 import { Avatar, getInitials } from '../Avatar';
 
-import './PresenceStack.css';
-
 interface PresenceStackProps {
 
   showMe?: boolean;
