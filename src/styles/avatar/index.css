@@ -42,3 +42,14 @@
 .avatar-image {
   object-fit: cover;
 }
+
+.avatar-sm {
+  width: 24px;
+  height: 24px;
+  font-size: 10px;
+}
+
+.avatar-sm .avatar-image,
+.avatar-sm .avatar-fallback {
+  font-size: 10px;
+}

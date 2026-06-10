@@ -3,7 +3,6 @@ import { User } from '@phosphor-icons/react';
 import type { UserProfile } from '../../core';
 
 interface AvatarProps {
-
   id: string;
 
   name?: string;
@@ -16,6 +15,9 @@ interface AvatarProps {
 
   showBorder?: boolean;
 
+  className?: string;
+
+  size?: 'sm' | 'md';
 }
 
 export const formatName = (user: UserProfile) => {
@@ -26,7 +28,7 @@ export const formatName = (user: UserProfile) => {
   if (first_name || last_name) return `${first_name} ${last_name}`.trim();
 
   // Remember that this function returns undefined if user has no (nick)name set!
-}
+};
 
 const stringToHash = (str: string) => {
   let hash = 0;
@@ -49,7 +51,7 @@ export const getInitials = (name: string): string => {
 };
 
 export const Avatar = (props: AvatarProps) => {
-  const { id, name, initials, color, avatar } = props;
+  const { id, name, initials, color, avatar, className, size } = props;
 
   const hue = Math.abs(stringToHash(id)) % 360;
   const fallbackColor = `hsl(${hue}, 50%, 75%)`;
@@ -58,26 +60,22 @@ export const Avatar = (props: AvatarProps) => {
   const displayInitials = initials || (name ? getInitials(name) : undefined);
 
   return (
-    <RadixAvatar.Root className='avatar'>
+    <RadixAvatar.Root
+      className={`avatar${props.size === 'sm' ? ' avatar-sm' : ''} ${props.className || ''}`.trim()}
+    >
       <span
         className={color ? 'avatar-wrapper ring' : 'avatar-wrapper'}
         style={color ? { borderColor: color } : undefined}
       >
-        {avatar && (
-          <RadixAvatar.Image
-            className='avatar-image'
-            src={avatar}
-          />
-        )}
+        {avatar && <RadixAvatar.Image className="avatar-image" src={avatar} />}
 
         <RadixAvatar.Fallback
-          className='avatar-fallback'
+          className="avatar-fallback"
           style={{ backgroundColor: fallbackColor, color: fallbackTextColor }}
         >
           {displayInitials ? displayInitials : <User size={16} />}
         </RadixAvatar.Fallback>
       </span>
     </RadixAvatar.Root>
-  )
-
-}
+  );
+};
