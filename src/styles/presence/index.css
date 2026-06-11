@@ -6,7 +6,7 @@
 
 .presence button {
   display: block;
-  margin:0;
+  margin: 0;
   padding: 0;
 }
 
@@ -21,7 +21,8 @@
   padding: 0;
 }
 
-.presence-stack li, .presence-stack button {
+.presence-stack li,
+.presence-stack button {
   display: flex;
 }
 
@@ -54,5 +55,3 @@
   display: flex;
   gap: 0.5rem;
 }
-
-

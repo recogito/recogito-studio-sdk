@@ -1,8 +1,6 @@
 import { forwardRef, type ReactNode, type Ref } from 'react';
 import { Spinner } from '../Spinner';
 
-import './Button.css';
-
 interface ButtonProps {
   busy?: boolean;
 

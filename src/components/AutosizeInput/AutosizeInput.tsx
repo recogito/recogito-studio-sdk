@@ -28,5 +28,3 @@ export const AutosizeInput = (props: InputHTMLAttributes<HTMLInputElement>) => {
   )
 
 }
-
-export const styles = './AutosizeInput.css';
