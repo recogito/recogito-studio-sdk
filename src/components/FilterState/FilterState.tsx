@@ -14,10 +14,6 @@ export interface FilterSetting<T> {
 }
 
 interface FilterStateContextValue {
-  hideAll: boolean;
-
-  setHideAll(hideAll: boolean): void;
-
   layerSettings?: FilterSetting<string[] | undefined>;
 
   setLayerSettings: React.Dispatch<
@@ -55,8 +51,6 @@ interface FilterStateProps {
 }
 
 export const FilterState = (props: FilterStateProps) => {
-  const [hideAll, setHideAll] = useState(false);
-
   const [layerSettings, setLayerSettings] = useState<
     FilterSetting<string[] | undefined> | undefined
   >();
@@ -77,11 +71,6 @@ export const FilterState = (props: FilterStateProps) => {
 
   // Note: this may move into the context provider later
   useEffect(() => {
-    if (hideAll) {
-      setChained(() => () => false);
-      return;
-    }
-
     const filters = [
       layerSettings?.filter,
       contributorSettings?.filter,
@@ -95,7 +84,7 @@ export const FilterState = (props: FilterStateProps) => {
     } else {
       setChained(undefined);
     }
-  }, [hideAll, layerSettings, contributorSettings, tagSettings, visibilitySettings]);
+  }, [layerSettings, contributorSettings, tagSettings, visibilitySettings]);
 
   return (
     <FilterStateContext.Provider
@@ -108,8 +97,6 @@ export const FilterState = (props: FilterStateProps) => {
         setTagSettings,
         visibilitySettings,
         setVisibilitySettings,
-        hideAll,
-        setHideAll,
         filter: chained,
       }}
     >
@@ -126,7 +113,6 @@ export const useFilter = () => {
     contributorSettings,
     tagSettings,
     visibilitySettings,
-    hideAll,
     filter,
   } = useContext(FilterStateContext);
 
@@ -136,7 +122,6 @@ export const useFilter = () => {
     contributorSettings,
     tagSettings,
     visibilitySettings,
-    hideAll,
   ].filter(Boolean).length;
 
   return { filter, numConditions };
