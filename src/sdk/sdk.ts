@@ -6,13 +6,14 @@ import { getContext, isOpenJoinEditFromContext } from './contexts';
 import { getDocument } from './documents';
 import { getMyProfile } from './profile';
 import { getProject, hasSelectPermissions } from './project';
-import { 
-  getDocumentLayersInContext, 
-  getDocumentLayersInProject, 
-  getLayerPolicies, 
-  getLayersInContext, 
-  getLayersInProject 
+import {
+  getDocumentLayersInContext,
+  getDocumentLayersInProject,
+  getLayerPolicies,
+  getLayersInContext,
+  getLayersInProject
 } from './layers';
+import { getProjectTagVocabulary } from './tags';
 
 const createSDK = (supabase: SupabaseClient) => ({
   annotations: {
@@ -43,6 +44,10 @@ const createSDK = (supabase: SupabaseClient) => ({
   project: {
     get: getProject(supabase),
     hasSelectPermissions: hasSelectPermissions(supabase)
+  },
+
+  tags: {
+    getProjectTagVocabulary: getProjectTagVocabulary(supabase)
   },
 
   supabase,
