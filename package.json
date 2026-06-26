@@ -21,12 +21,12 @@
   },
   "devDependencies": {
     "@annotorious/annotorious": "^3.8.3",
-    "@types/node": "^25.6.0",
-    "@types/react": "^19.2.14",
+    "@types/node": "^26.0.1",
+    "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
-    "vite": "^7.3.2",
+    "vite": "^7.3.6",
     "vite-plugin-dts": "^4.5.4"
   },
   "exports": {
@@ -40,12 +40,12 @@
   },
   "dependencies": {
     "@phosphor-icons/react": "2.1.10",
-    "@radix-ui/react-avatar": "^1.1.11",
-    "@radix-ui/react-popover": "^1.1.15",
-    "@radix-ui/react-tooltip": "^1.2.8",
-    "@react-spring/web": "^10.1.0",
-    "@supabase/ssr": "^0.10.2",
-    "@supabase/supabase-js": "^2.105.1",
+    "@radix-ui/react-avatar": "^1.2.0",
+    "@radix-ui/react-popover": "^1.1.17",
+    "@radix-ui/react-tooltip": "^1.2.10",
+    "@react-spring/web": "^10.1.2",
+    "@supabase/ssr": "^0.10.3",
+    "@supabase/supabase-js": "^2.108.2",
     "date-fns": "^4.1.0",
     "fs-extra": "^11.3.4"
   }
