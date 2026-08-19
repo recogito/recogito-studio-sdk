@@ -32,13 +32,15 @@
   "exports": {
     ".": "./dist/index.js",
     "./style.css": "./dist/index.css",
-    "./components": "./dist/components/index.js"
+    "./components": "./dist/components/index.js",
+    "./iiif": "./dist/iiif/index.js"
   },
   "peerDependencies": {
     "@annotorious/react": "^3.8.3",
     "astro": "^6.2.1 || ^7.0.0"
   },
   "dependencies": {
+    "@allmaps/iiif-parser": "^1.0.0-beta.47",
     "@phosphor-icons/react": "2.1.10",
     "@radix-ui/react-avatar": "^1.2.0",
     "@radix-ui/react-popover": "^1.1.17",
