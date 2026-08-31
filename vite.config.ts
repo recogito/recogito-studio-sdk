@@ -13,6 +13,7 @@ export default defineConfig({
       entry: {
         'index': resolve(__dirname, 'src/index.ts'),
         'components/index': resolve(__dirname, 'src/components/index.ts'),
+        'iiif/index': resolve(__dirname, 'src/iiif/index.ts'),
       },
       formats: ['es']
     },
