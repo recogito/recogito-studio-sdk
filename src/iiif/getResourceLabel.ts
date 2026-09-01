@@ -13,7 +13,7 @@ export const getResourceLabel = (dict: LanguageString | undefined, lang?: string
       return en[0];
     } else {
       // Fallback #2
-      const values = Object.values(dict).reduce<string[]>((flattened, value) => {
+      const values = Object.values(dict).reduce<(string | number | boolean)[]>((flattened, value) => {
         return Array.isArray(value) ? [...flattened, ...value] : [...flattened, value]
       }, []);
 

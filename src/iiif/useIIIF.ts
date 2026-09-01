@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import {
-  Canvas,
+  type Canvas,
   IIIF,
   type Manifest,
   type Metadata,

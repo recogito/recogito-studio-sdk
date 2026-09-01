@@ -16,7 +16,7 @@ export const UndoStack = (props: UndoStackProps) => {
 
   const store = useAnnotationStore();
 
-  const created = useRef<Annotation | undefined>();
+  const created = useRef<Annotation>(null);
 
   const { selected } = useSelection();
 
@@ -25,7 +25,7 @@ export const UndoStack = (props: UndoStackProps) => {
     if (currentState?.bodies.length === 0) {
       store!.deleteAnnotation(currentState);
       if (created.current === annotation)
-        created.current = undefined;
+        created.current = null;
     }
   }
 
