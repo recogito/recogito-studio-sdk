@@ -1,5 +1,6 @@
 export * from './getImageURL';
 export * from './getResourceLabel';
+export * from './getThumbnailURL';
 export * from './sanitizeManifest';
 export * from './useIIIF';
 export * from './useDocumentIIIF';
