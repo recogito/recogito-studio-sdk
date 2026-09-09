@@ -1,112 +1,132 @@
 import { useEffect, useState } from 'react';
 import {
-  type Canvas,
-  IIIF,
-  type Manifest,
-  type Metadata,
-} from '@allmaps/iiif-parser';
-import { sanitizeManifest } from './sanitizeManifest';
-import type { IIIFImage } from './getImageURL';
+  Cozy,
+  type CozyCanvas,
+  type CozyImageResource,
+  type CozyManifest,
+  type CozyParseResult,
+} from 'cozy-iiif';
 
-export type ManifestType = 'PRESENTATION' | 'IMAGE';
+export interface UseIIIFOptions {
+  authToken?: string;
+}
 
 /**
  * Core IIIF resolution hook, shared by the Recogito client and plugins.
  *
- * Given a resolved IIIF URL, it distinguishes a IIIF Image API resource
- * (an `info.json`) from a Presentation manifest, parses the latter via
- * `@allmaps/iiif-parser`, and exposes the canvases, the current image, page
- * navigation, and the parsed `Manifest` (so callers can layer on features
- * such as embedded-annotation parsing).
+ * Given a resolved URL, uses cozy-iiif to identify and parse the resource
+ * (Presentation manifest, single IIIF Image API resource, or a plain image)
+ * and exposes the parsed cozy-iiif model, plus canvas navigation.
  */
-export const useIIIF = (url?: string) => {
-  const [manifest, setManifest] = useState<Manifest | undefined>();
+export const useIIIF = (url?: string, options: UseIIIFOptions = {}) => {
+  const { authToken } = options;
 
-  const [canvases, setCanvases] = useState<Canvas[]>([]);
+  const [result, setResult] = useState<CozyParseResult | undefined>();
 
-  const [manifestError, setManifestError] = useState<string | undefined>();
+  const [manifest, setManifest] = useState<CozyManifest | undefined>();
 
-  const [metadata, setMetadata] = useState<Metadata | undefined>();
+  const [image, setImage] = useState<CozyImageResource | undefined>();
 
-  const [manifestType, setManifestType] = useState<ManifestType | undefined>();
+  const [canvases, setCanvases] = useState<CozyCanvas[]>([]);
 
-  const [currentImage, setCurrentImage] = useState<IIIFImage | undefined>();
+  const [currentCanvas, setCurrentCanvas] = useState<CozyCanvas | undefined>();
+
+  const [error, setError] = useState<string | undefined>();
 
   useEffect(() => {
-    if (!url) return;
+    // Reset on every URL/token change
+    setResult(undefined);
+    setManifest(undefined);
+    setImage(undefined);
+    setCanvases([]);
+    setCurrentCanvas(undefined);
+    setError(undefined);
 
-    if (url.endsWith('info.json') || url.includes('info.json?')) {
-      // IIIF Image API resource - no manifest to fetch
-      setCurrentImage(url);
-      setManifestType('IMAGE');
-      return;
-    }
+    if (!url) return;
 
     let cancelled = false;
 
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
+    const resolve = async (): Promise<CozyParseResult> => {
+      if (authToken) {
+        const res = await fetch(url, {
+          headers: { Authorization: `Bearer ${authToken}` },
+        });
+        if (!res.ok)
+          throw new Error(`Image request failed: ${res.status}`);
+        return Cozy.parse(await res.json(), url);
+      }
+
+      return Cozy.parseURL(url);
+    };
+
+    resolve()
+      .then((parsed) => {
         if (cancelled) return;
 
-        const parsed = IIIF.parse(sanitizeManifest(data));
+        setResult(parsed);
+
         if (parsed.type === 'manifest') {
-          setManifest(parsed);
-          setCanvases(parsed.canvases);
-          setCurrentImage(parsed.canvases[0]);
-          setManifestType('PRESENTATION');
-          setMetadata(parsed.metadata);
+          setManifest(parsed.resource);
+          setCanvases(parsed.resource.canvases);
+          setCurrentCanvas(parsed.resource.canvases[0]);
+        } else if (parsed.type === 'iiif-image') {
+          setImage(parsed.resource);
+        } else if (parsed.type === 'plain-image') {
+          // No cozy resource model for plain images; URL is on `result`
+        } else if (parsed.type === 'error') {
+          setError(parsed.message);
         } else {
-          setManifestError(`Failed to parse IIIF manifest: ${url}`);
+          setError(`Unsupported IIIF resource: ${parsed.type}`);
         }
       })
-      .catch((error) => {
+      .catch((err) => {
         if (cancelled) return;
-        console.error('Failed to load IIIF manifest', error);
-        setManifestError(`Failed to parse IIIF manifest: ${url}`);
+        console.error('Failed to load IIIF resource', err);
+        setError(`Failed to load IIIF resource: ${url}`);
       });
 
     return () => {
       cancelled = true;
     };
-  }, [url]);
+  }, [url, authToken]);
 
-  const isPresentationManifest = manifestType === 'PRESENTATION';
+  const isPresentationManifest = Boolean(manifest);
 
-  const isImageManifest = manifestType === 'IMAGE';
+  const isImageManifest = Boolean(image);
+
+  const currentImage: CozyImageResource | undefined =
+    currentCanvas?.images[0] ?? image;
 
   const next = () => {
-    if (!currentImage || canvases.length === 0) return;
+    if (!currentCanvas || canvases.length === 0) return;
 
-    const idx = canvases.findIndex(
-      (c) => c.uri === (currentImage as Canvas).uri,
-    );
+    const idx = canvases.findIndex((c) => c.id === currentCanvas.id);
     const nextIdx = Math.min(idx + 1, canvases.length - 1);
 
-    setCurrentImage(canvases[nextIdx]);
+    setCurrentCanvas(canvases[nextIdx]);
   };
 
   const previous = () => {
-    if (!currentImage || canvases.length === 0) return;
+    if (!currentCanvas || canvases.length === 0) return;
 
-    const idx = canvases.findIndex(
-      (c) => c.uri === (currentImage as Canvas).uri,
-    );
-    const nextIdx = Math.max(0, idx - 1);
+    const idx = canvases.findIndex((c) => c.id === currentCanvas.id);
+    const prevIdx = Math.max(0, idx - 1);
 
-    setCurrentImage(canvases[nextIdx]);
+    setCurrentCanvas(canvases[prevIdx]);
   };
 
   return {
+    result,
     manifest,
+    image,
     canvases,
+    currentCanvas,
     currentImage,
     isPresentationManifest,
     isImageManifest,
-    manifestError,
-    metadata,
+    error,
     next,
     previous,
-    setCurrentImage,
+    setCurrentCanvas,
   };
 };
