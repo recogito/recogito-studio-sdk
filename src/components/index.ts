@@ -4,6 +4,7 @@ export * from './Autosuggest';
 export * from './Avatar';
 export * from './Button';
 export * from './FilterState';
+export * from './IIIFThumbnail';
 export * from './Presence';
 export * from './SelectionURLState';
 export * from './Spinner';

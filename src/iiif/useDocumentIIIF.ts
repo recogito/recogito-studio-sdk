@@ -62,7 +62,7 @@ export const useDocumentIIIF = (
     }
   }, [document, cantaloupePath]);
 
-  const iiif = useIIIF(resolvedUrl);
+  const iiif = useIIIF(resolvedUrl, { authToken });
 
   return { ...iiif, authToken };
 };
