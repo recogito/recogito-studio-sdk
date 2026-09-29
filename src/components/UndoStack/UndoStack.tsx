@@ -6,11 +6,16 @@ interface UndoStackProps {
 
   undoEmpty?: boolean;
 
+  keepEmpty?(annotation: Annotation): boolean;
+
 }
 
 export const UndoStack = (props: UndoStackProps) => {
 
   const { undoEmpty } = props;
+
+  const keepEmpty = useRef(props.keepEmpty);
+  keepEmpty.current = props.keepEmpty;
 
   const anno = useAnnotator<Annotator>();
 
@@ -22,7 +27,7 @@ export const UndoStack = (props: UndoStackProps) => {
 
   const deleteIfEmpty = (annotation: Annotation) => {
     const currentState = store!.getAnnotation(annotation.id);
-    if (currentState?.bodies.length === 0) {
+    if (currentState?.bodies.length === 0 && !keepEmpty.current?.(currentState)) {
       store!.deleteAnnotation(currentState);
       if (created.current === annotation)
         created.current = null;
@@ -32,6 +37,8 @@ export const UndoStack = (props: UndoStackProps) => {
   useEffect(() => {
     if (anno && undoEmpty) {
       const onUpsert = (annotation: Annotation) => {
+        if (keepEmpty.current?.(annotation)) return;
+
         const { current } = created;
         created.current = annotation;
 
