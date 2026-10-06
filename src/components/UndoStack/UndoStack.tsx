@@ -11,6 +11,7 @@ interface UndoStackProps {
 }
 
 export const UndoStack = (props: UndoStackProps) => {
+  
   const { undoEmpty } = props;
 
   const keepEmpty = useRef(props.keepEmpty);
