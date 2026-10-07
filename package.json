@@ -20,7 +20,7 @@
     "postinstall": "echo 'Run `npx copy-template` to copy the template app to your project.'"
   },
   "devDependencies": {
-    "@annotorious/annotorious": "^3.8.3",
+    "@annotorious/annotorious": "^3.9.4",
     "@types/node": "^26.1.0",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
@@ -38,7 +38,7 @@
     "./iiif": "./dist/iiif/index.js"
   },
   "peerDependencies": {
-    "@annotorious/react": "^3.8.3",
+    "@annotorious/react": "^3.9.4",
     "astro": "^6.2.1 || ^7.0.0",
     "cozy-iiif": "^0.10.1"
   },
