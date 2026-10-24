@@ -1,6 +1,7 @@
 .avatar {
   border-radius: 50%;
   display: block;
+  flex-shrink: 0;
   position: relative;
   height: 38px;
   width: 38px;
