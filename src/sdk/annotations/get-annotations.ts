@@ -148,3 +148,17 @@ export const getAnnotations = (
     return { error, data:data.map(crosswalkAnnotation) };
   });
 }
+
+export const getAnnotation = (
+  supabase: SupabaseClient
+) => (
+  id: string
+) =>
+  supabase
+    .from('annotations')
+    .select(SELECT_STATEMENT)
+    .not('targets', 'is', null)
+    .eq('id', id)
+    .single()
+    .then(({ data, error }) =>
+      error ? { data, error } : { error, data: crosswalkAnnotation(data) });
