@@ -1,7 +1,7 @@
 import { createSupabaseServerClient } from './supabase-server-client';
 import { createSupabaseBrowserClient } from './supabase-browser-client';
 import type { SupabaseClient } from '@supabase/supabase-js';
-import { getAnnotations } from './annotations';
+import { getAnnotation, getAnnotations } from './annotations';
 import { getContext, isOpenJoinEditFromContext } from './contexts';
 import { getDocument } from './documents';
 import { getMyProfile } from './profile';
@@ -17,7 +17,8 @@ import { getProjectTagVocabulary } from './tags';
 
 const createSDK = (supabase: SupabaseClient) => ({
   annotations: {
-    get: getAnnotations(supabase)
+    get: getAnnotations(supabase),
+    getById: getAnnotation(supabase)
   },
 
   contexts: {
