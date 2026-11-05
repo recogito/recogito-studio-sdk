@@ -20,7 +20,7 @@ type TargetRecord = {
   value: string
 }
 
-type BodyRecord = {
+export type BodyRecord = {
   id: string, 
   annotation_id: string, 
   created_by?: UserRecord, 
@@ -51,7 +51,7 @@ const crosswalkTarget = (arg: TargetRecord): SupabaseAnnotationTarget => ({
   updatedBy: arg.updated_by ? crosswalkUser(arg.updated_by) : undefined
 });
 
-const crosswalkBody = (arg: BodyRecord): SupabaseAnnotationBody => ({
+export const crosswalkBody = (arg: BodyRecord): SupabaseAnnotationBody => ({
   id: arg.id,
   annotation: arg.annotation_id,
   created: arg.created_at ? new Date(arg.created_at) : undefined,
@@ -75,6 +75,30 @@ const crosswalkAnnotation = (data: any) => {
     bodies: bodies.map(crosswalkBody)
   } as SupabaseAnnotation;
 }
+
+export const BODY_SELECT_STATEMENT = `
+  id,
+  annotation_id,
+  created_at,
+  created_by:profiles!bodies_created_by_fkey(
+    id,
+    nickname,
+    first_name,
+    last_name,
+    avatar_url
+  ),
+  updated_at,
+  updated_by:profiles!bodies_updated_by_fkey(
+    id,
+    nickname,
+    first_name,
+    last_name,
+    avatar_url
+  ),
+  version,
+  format,
+  purpose,
+  value`;
 
 const SELECT_STATEMENT = `
   id,
@@ -102,29 +126,7 @@ const SELECT_STATEMENT = `
     version,
     value
   ),
-  bodies ( 
-    id,
-    annotation_id,
-    created_at,
-    created_by:profiles!bodies_created_by_fkey(
-      id,
-      nickname,
-      first_name,
-      last_name,
-      avatar_url
-    ),
-    updated_at,
-    updated_by:profiles!bodies_updated_by_fkey(
-      id,
-      nickname,
-      first_name,
-      last_name,
-      avatar_url
-    ),
-    version,
-    format,
-    purpose,
-    value
+  bodies ( ${BODY_SELECT_STATEMENT}
   )`;
 
 export const getAnnotations = (
