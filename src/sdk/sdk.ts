@@ -20,7 +20,7 @@ export type { UpsertBodyArgs, UpsertBodyError, UpsertBodyResult } from './annota
 const createSDK = (supabase: SupabaseClient) => ({
   annotations: {
     get: getAnnotations(supabase),
-    upsertBody: upsertBody(supabase)
+    upsertBody: upsertBody(supabase),
     getById: getAnnotation(supabase)
   },
 
