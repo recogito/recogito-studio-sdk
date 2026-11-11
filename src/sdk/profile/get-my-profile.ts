@@ -1,4 +1,5 @@
-import type { AuthError, PostgrestError, SupabaseClient, User } from '@supabase/supabase-js';
+import { AuthError, AuthSessionMissingError, isAuthError } from '@supabase/supabase-js';
+import type { PostgrestError, SupabaseClient, User } from '@supabase/supabase-js';
 import type { MyProfile } from '../../core';
 
 const SELECT_PROFILE = `
@@ -34,15 +35,15 @@ const SELECT_ORG_GROUPS = `
 const getUser = (supabase: SupabaseClient): Promise<User> =>
   supabase.auth.getSession().then(({ error, data }) => {
     if (error || !data?.session) {
-      throw error || 'Unauthorized';
+      throw error || new AuthSessionMissingError();
     } else {
       return supabase.auth.getUser().then(({ error, data }) => {
         if (error) {
           throw error;
         } else if (!data.user) {
-          throw 'Unauthorized';
+          throw new AuthSessionMissingError();
         } else if (data.user.role !== 'authenticated') {
-          throw 'Unauthorized';
+          throw new AuthError('Unauthorized', 401);
         } else {
           return data.user;
         }
@@ -80,4 +81,12 @@ export const getMyProfile = (
 
             return { error, data: myProfile };
           });
-      }));
+      }))
+    .catch(error => ({
+      // getUser rejects when there is no valid session. Resolve with the
+      // usual { error, data } shape instead, so callers don't get a rejection.
+      error: isAuthError(error)
+        ? error
+        : new AuthError(error instanceof Error ? error.message : String(error)),
+      data: undefined as unknown as MyProfile
+    }));
