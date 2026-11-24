@@ -15,5 +15,7 @@ export interface InstalledPlugin {
   plugin_name: string;
 
   plugin_settings?: any;
+
+  provides_default_route?: boolean;
   
 }
