@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import {
   Cozy,
   type CozyCanvas,
+  type CozyImageInfo,
   type CozyImageResource,
   type CozyManifest,
   type CozyParseResult,
@@ -25,7 +26,8 @@ export const useIIIF = (url?: string, options: UseIIIFOptions = {}) => {
 
   const [manifest, setManifest] = useState<CozyManifest | undefined>();
 
-  const [image, setImage] = useState<CozyImageResource | undefined>();
+
+  const [image, setImage] = useState<CozyImageInfo | undefined>();
 
   const [canvases, setCanvases] = useState<CozyCanvas[]>([]);
 
@@ -94,7 +96,7 @@ export const useIIIF = (url?: string, options: UseIIIFOptions = {}) => {
 
   const isImageManifest = Boolean(image);
 
-  const currentImage: CozyImageResource | undefined =
+  const currentImage: CozyImageResource | CozyImageInfo | undefined =
     currentCanvas?.images[0] ?? image;
 
   const next = () => {
