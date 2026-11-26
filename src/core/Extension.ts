@@ -1,4 +1,4 @@
-// Base extension type - name and extension_point
+// Base extension type: carries `name` and `extension_point`
 // 
 // Note: distributes over unions: Ext<'a' | 'b'> = Ext<'a'> | Ext<'b'> - this
 // is needed for Extract/ExtensionFor below.
@@ -6,7 +6,7 @@ export type Ext<P extends string> = P extends string
   ? { name: string; extension_point: P }
   : never;
 
-// Base "component extension": provides a React component
+// Base **Component Extension**: provides a React component by name
 export type ComponentExt<
   P extends string, 
   Options extends JsonObject = {}
@@ -15,7 +15,7 @@ export type ComponentExt<
   component_name: string;
 } & Options;
 
-// Base "configuration extension": just provide custom config information
+// Base **Configuration Extension**: provide custom config information only
 export type ConfigurationExt<
   P extends string, 
   Options extends JsonObject = {}
@@ -28,12 +28,13 @@ type JsonPrimitive = string | number | boolean | null;
 type JsonValue = JsonPrimitive | JsonValue[] | JsonObject;
 type JsonObject = { [key: string]: JsonValue | undefined };
 
-// Complete list of supported Component- and Configuration-Extensions
+// Complete list of supported Component Extensions
 export type ComponentExtension =
   | AdminExtension
   | ProjectDocumentActionsExtension
   | AnnotationViewExtension;
 
+// Complete list of supported Configuration Extensions
 export type ConfigurationExtension = 
   | ProjectDocumentDefaultViewExtension;
 
@@ -50,7 +51,6 @@ export type ExtensionFor<P extends ExtensionPoint> = Extract<Extension, { extens
 /*************************************************/
 
 export type AdminExtension = ComponentExt<'admin'>;
-
 
 /*************************************************/
 /*  Extension points on the project home screen  */
