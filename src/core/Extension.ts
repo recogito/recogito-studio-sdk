@@ -61,8 +61,8 @@ export type ProjectDocumentActionsExtension = ComponentExt<'project:document-act
 
 // Override the URL that opens when the user clicks the project card
 export type ProjectDocumentDefaultViewExtension = ConfigurationExt<'project:document-default-view', {
-  foo: string,
-  bar: string
+  route_pattern: string,
+  allowed?: (string | null)[]
 }>
 
 /*************************************************/
