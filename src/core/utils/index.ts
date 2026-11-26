@@ -1,4 +1,3 @@
-export * from './contributors';
-export * from './matchesExtensionPoint';
-export * from './palette';
-export * from './tags';
+export * from './annotation';
+export * from './color';
+export * from './extension';

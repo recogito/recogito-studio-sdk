@@ -23,3 +23,4 @@ export const matchesExtensionPoint = (pattern: string, extensionPoint: Extension
 
   return true; // All segments match
 }
+
