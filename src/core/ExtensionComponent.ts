@@ -16,11 +16,19 @@ export interface ExtensionComponentProps<T extends unknown = any> {
 
 }
 
+/*************************************************/
+/*  Plugin administration screen                 */
+/*************************************************/
+
 export interface AdminExtensionProps<T extends unknown = any> extends ExtensionComponentProps<T> {
 
   onChangeUserSettings(settings: T): void;
 
 }
+
+/*************************************************/
+/*  Extension points on the project home screen  */
+/*************************************************/
 
 export interface DocumentCardActionsExtensionProps<T extends unknown = any> extends ExtensionComponentProps<T> {
 
@@ -34,12 +42,15 @@ export interface DocumentCardActionsExtensionProps<T extends unknown = any> exte
 
 }
 
+/*************************************************/
+/*  Image and text annotation view               */
+/*************************************************/
+
 export interface AnnotatorExtensionProps<A extends Annotation, T extends unknown = any> extends ExtensionComponentProps<T> {
 
   anno: Annotator<A>;
 
 }
-
 
 export interface AnnotationEditorExtensionProps<T extends unknown = any> extends ExtensionComponentProps<T> {
 
