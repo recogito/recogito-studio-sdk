@@ -50,3 +50,17 @@ export const fillTemplateString = (template: string, values: Record<string, stri
   ), template);
 }
 
+/**
+ * Matches a string against a list of content types, conforming to the 
+ * shape of the `project:document-default-view` extension's `allowed` field.
+ */
+export const matchesContentTypes = (contentType: string, patterns: string[]): boolean => 
+  patterns.some(pattern => {
+    if (pattern.endsWith('/*')) {
+      const prefix = pattern.slice(0, -1);
+      return contentType.startsWith(prefix);
+    }
+
+    return pattern === contentType;
+  });
+
