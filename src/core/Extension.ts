@@ -38,6 +38,12 @@ export type ComponentExtension =
 export type ConfigurationExtension = 
   | ProjectDocumentDefaultViewExtension;
 
+export const isComponentExtension = (ext: Extension): ext is ComponentExtension =>
+  ext.component_name !== undefined;
+
+export const isConfigurationExtension = (ext: Extension): ext is ConfigurationExtension =>
+  ext.component_name === undefined;
+
 // Helper types for external use
 export type Extension = ComponentExtension | ConfigurationExtension;
 export type ExtensionPoint = Extension['extension_point'];
