@@ -36,19 +36,13 @@ export const fillTemplateString = (template: string, values: Record<string, stri
   const templateKeysMatch = template.match(/\{([^}]+)\}/g) || [];
   const templateKeys = templateKeysMatch.map(match => match.slice(1, -1));
   
-  const templateKeysSet = new Set(templateKeys);
   const valueKeys = Object.keys(values);
   const valueKeysSet = new Set(valueKeys);
 
-  valueKeys.forEach(key => {
-    if (!templateKeysSet.has(key))
-      console.warn(`[fillTemplateString] '${key}' is not present in the template string.`);
-  });
-
-
+  // Warn if the template string contains a key that the extension point doesn't provide
   templateKeys.forEach(key => {
     if (!valueKeysSet.has(key))
-      console.warn(`[fillTemplateString] '${key}' required by the template string is missing from values.`);
+      console.warn(`[fillTemplateString] '${key}' in template string is not provided by extension point.`);
   });
 
   return Object.entries(values).reduce((str, [key, value]) => (
