@@ -54,9 +54,9 @@ export const fillTemplateString = (template: string, values: Record<string, stri
  * Matches a string against a list of content types, conforming to the 
  * shape of the `project:document-default-view` extension's `allowed` field.
  */
-export const matchesContentTypes = (contentType: string | undefined, patterns: string[]): boolean => 
+export const matchesContentTypes = (contentType: string | undefined, patterns: (null | string)[]): boolean => 
   patterns.some(pattern => {
-    if (contentType && pattern.endsWith('/*')) {
+    if (contentType && pattern?.endsWith('/*')) {
       const prefix = pattern.slice(0, -1);
       return contentType.startsWith(prefix);
     }
