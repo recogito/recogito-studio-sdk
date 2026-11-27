@@ -1,7 +1,7 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useMemo, useState } from 'react';
 import type { ReactNode } from 'react';
 import type { PluginInstallationConfig } from './PluginInstallationConfig';
-import type { Extension, ExtensionPoint } from './Extension';
+import type { ExtensionPoint } from './Extension';
 import { matchesExtensionPoint } from './utils';
 
 interface PluginProviderContextValue {
@@ -54,14 +54,13 @@ export const usePlugins = (pattern: ExtensionPoint) => {
 
 export const useExtensions = (pattern: ExtensionPoint) => {
   const installed = usePlugins(pattern);
-  return installed.reduce<{ extension: Extension, config: PluginInstallationConfig }[]>((all, config) => {
-    return [
-      ...all, 
-      ...(config.plugin.extensions || [])
+  
+  return useMemo(() => 
+    installed.flatMap(config => 
+      (config.plugin.extensions || [])
         .filter(e => matchesExtensionPoint(pattern, e.extension_point))
         .map(extension => ({ extension, config }))
-    ];
-  }, []);
+    ), [installed, pattern]);
 }
 
 export const useSharedPluginState = <T extends any = any>(pluginId: string) => {
