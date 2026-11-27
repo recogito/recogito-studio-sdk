@@ -48,7 +48,6 @@ export const enumerateContributors = (
   });
 };
 
-
 export const parseTagBody = (
   body: AnnotationBody
 ): VocabularyTerm | undefined => {
