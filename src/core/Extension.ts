@@ -38,6 +38,7 @@ export type ComponentExtension =
 export type ConfigurationExtension = 
   | ProjectDocumentDefaultViewExtension;
 
+// Type guards for convenience
 export const isComponentExtension = (ext: Extension): ext is ComponentExtension =>
   ext.component_name !== undefined;
 
